@@ -51,7 +51,7 @@ return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = function()
-      return require "nvchad.configs.nvimtree"
+      return require "configs.nvimtree"
     end,
   },
 
@@ -68,9 +68,10 @@ return {
   -- formatting!
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = { lua = { "stylua" } },
-    },
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      return require "configs.conform"
+    end,
   },
 
   -- git stuff
@@ -78,7 +79,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
     opts = function()
-      return require "nvchad.configs.gitsigns"
+      return require "configs.gitsigns"
     end,
   },
 
@@ -87,7 +88,7 @@ return {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
-      return require "nvchad.configs.mason"
+      return require "configs.mason"
     end,
   },
 
@@ -95,7 +96,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
+      require("configs.lspconfig").defaults()
     end,
   },
 
@@ -111,7 +112,6 @@ return {
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-          require "nvchad.configs.luasnip"
         end,
       },
 
@@ -132,16 +132,14 @@ return {
       },
 
       -- cmp sources plugins
-      {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-      },
     },
     opts = function()
-      return require "nvchad.configs.cmp"
+      return require "configs.cmp"
     end,
   },
 
@@ -150,7 +148,7 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
     opts = function()
-      return require "nvchad.configs.telescope"
+      return require "configs.telescope"
     end,
   },
 
@@ -160,7 +158,7 @@ return {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
-      return require "nvchad.configs.treesitter"
+      return require "configs.treesitter"
     end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)

@@ -5,6 +5,7 @@ local g = vim.g
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
 o.showmode = false
+vim.opt.scrolloff = 15
 
 o.clipboard = "unnamedplus"
 o.cursorline = true

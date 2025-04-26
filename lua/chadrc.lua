@@ -1,9 +1,17 @@
 local options = {
-
 	base46 = {
-		theme = "bearded-arc", -- default theme
+		theme = "bearded-arc",
 		hl_add = {},
-		hl_override = {},
+		hl_override = {
+			-- nvim-tree Git indicators
+			NvimTreeGitDirty = { fg = "yellow" }, -- modified
+			NvimTreeGitStaged = { fg = "green" }, -- staged
+			NvimTreeGitNew = { fg = "cyan" }, -- untracked
+			NvimTreeGitDeleted = { fg = "red" }, -- deleted
+			NvimTreeGitMerge = { fg = "purple" }, -- conflict
+			NvimTreeGitRenamed = { fg = "orange" }, -- renamed
+			NvimTreeGitIgnored = { fg = "grey_5" }, -- ignored
+		},
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
@@ -29,12 +37,12 @@ local options = {
 			separator_style = "default",
 			order = nil,
 			modules = nil,
-		},
+		}, --    (defaults to bearded-arc)
 
 		-- lazyload it when there are 1+ buffers
 		tabufline = {
 			enabled = true,
-			lazyload = true,
+			lazyload = false,
 			order = { "treeOffset", "buffers", "tabs", "btns" },
 			modules = nil,
 			bufwidth = 21,

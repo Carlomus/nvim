@@ -5,7 +5,7 @@ local g = vim.g
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
 o.showmode = false
-vim.opt.scrolloff = 15
+vim.opt.scrolloff = 12
 
 o.clipboard = "unnamedplus"
 o.cursorline = true
@@ -28,7 +28,6 @@ o.number = true
 o.numberwidth = 3
 o.ruler = true
 
--- disable nvim intro
 opt.shortmess:append("sI")
 
 o.signcolumn = "yes"

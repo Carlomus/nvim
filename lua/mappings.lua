@@ -24,6 +24,24 @@ map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
+-- move lines and blocks
+map("n", "<A-j>", ":m .+1<CR>==", { desc = "line ⇣ (swap with below)" })
+map("n", "<A-k>", ":m .-2<CR>==", { desc = "line ⇡ (swap with above)" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
+
+-- Duplicate line
+map("n", "<leader>D", "yyp", { desc = "duplicate line" })
+
+-- Toggle spell check
+map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
+
+-- Global work rename
+
+-- d goes to black holei
+map({ "n", "v" }, "d", '"_d', { desc = "delete (black-hole)" })
+map({ "n", "v" }, "dd", '"_dd', { desc = "delete line (black-hole)" })
+
 map({ "n", "x" }, "<leader>h", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "general format file" })

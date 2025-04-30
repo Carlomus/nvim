@@ -1,6 +1,6 @@
 local options = {
 	base46 = {
-		theme = "bearded-arc",
+		theme = "aylin",
 		hl_add = {},
 		hl_override = {
 			-- nvim-tree Git indicators
@@ -15,7 +15,7 @@ local options = {
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
-		theme_toggle = { "bearded-arc", "one_light" },
+		theme_toggle = { "aylin", "one_light" },
 	},
 
 	ui = {

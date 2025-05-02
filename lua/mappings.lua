@@ -36,8 +36,6 @@ map("n", "<leader>D", "yyp", { desc = "duplicate line" })
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 
--- Global work rename
-
 -- d goes to black holei
 map({ "n", "v" }, "d", '"_d', { desc = "delete (black-hole)" })
 map({ "n", "v" }, "dd", '"_dd', { desc = "delete line (black-hole)" })

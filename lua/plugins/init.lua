@@ -3,7 +3,18 @@ return {
 	{
 		"carlomus/VIper",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		ft = { "python", "ipynb" },
+		ft = { "python", "ipynb", "markdown" },
+	},
+	{
+		"quarto-dev/quarto-nvim",
+		dependencies = {
+			"jmbuhr/otter.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("configs.quarto")
+		end,
+		ft = { "quarto", "markdown" },
 	},
 	{
 		"3rd/image.nvim",
@@ -26,9 +37,35 @@ return {
 		dependencies = { "3rd/image.nvim" },
 		build = ":UpdateRemotePlugins",
 		init = function()
-			-- these are examples, not defaults. Please see the readme
 			vim.g.molten_image_provider = "image.nvim"
-			vim.g.molten_output_win_max_height = 20
+			-- vim.g.molten_output_win_max_height = 20
+			vim.g.molten_auto_open_output = false
+			vim.g.molten_auto_open_html_in_browser = true
+			vim.g.molten_tick_rate = 200
+			vim.g.molten_use_border_highlights = true
+			-- optional, I like wrapping. works for virt text and the output window
+			vim.g.molten_wrap_output = true
+
+			-- Output as virtual text. Allows outputs to always be shown, works with images, but can
+			-- be buggy with longer images
+			vim.g.molten_virt_text_output = true
+
+			-- this will make it so the output shows up below the \`\`\` cell delimiter
+			vim.g.molten_virt_lines_off_by_1 = true
+		end,
+		config = function()
+			return require("configs.molten")
+		end,
+	},
+	{
+		"GCBallesteros/jupytext.nvim",
+		lazy = false,
+		config = function()
+			require("jupytext").setup({
+				style = "markdown",
+				output_extension = "md",
+				force_ft = "markdown",
+			})
 		end,
 	},
 	{

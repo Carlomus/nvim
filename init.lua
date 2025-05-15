@@ -3,6 +3,8 @@ vim.g.mapleader = " "
 
 vim.g.python3_host_prog = vim.fn.exepath("python3")
 
+require("filetypes")
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

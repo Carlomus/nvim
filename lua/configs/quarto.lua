@@ -1,4 +1,5 @@
 local quarto = require("quarto")
+
 quarto.setup({
 	lspFeatures = {
 		-- NOTE: put whatever languages you want here:
@@ -14,11 +15,11 @@ quarto.setup({
 	},
 	keymap = {
 		-- NOTE: setup your own keymaps:
-		hover = "H",
-		definition = "gd",
-		rename = "<leader>rn",
-		references = "gr",
-		format = "<leader>gf",
+		-- hover = "H",
+		-- definition = "gd",
+		-- rename = "<leader>rn",
+		-- references = "gr",
+		-- format = "<leader>gf",
 	},
 	codeRunner = {
 		enabled = true,

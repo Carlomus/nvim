@@ -1,37 +1,47 @@
 vim.keymap.set(
 	"n",
-	"<localleader>e",
+	"<leader>je",
 	":MoltenEvaluateOperator<CR>",
 	{ desc = "evaluate operator", silent = true }
 )
+
+local function toggle_molten_output()
+	-- Try to hide; if that errors (not open), then open.
+	if not pcall(vim.api.nvim_command, "MoltenHideOutput") then
+		pcall(vim.api.nvim_command, "MoltenEnterOutput")
+	end
+end
+
 vim.keymap.set(
 	"n",
-	"<localleader>os",
-	":noautocmd MoltenEnterOutput<CR>",
-	{ desc = "open output window", silent = true }
+	"<leader>jo",
+	toggle_molten_output,
+	{ desc = "Molten toggle output", silent = true }
 )
 
 vim.keymap.set(
 	"n",
-	"<localleader>rr",
-	":MoltenReevaluateCell<CR>",
-	{ desc = "re-eval cell", silent = true }
-)
-vim.keymap.set(
-	"v",
-	"<localleader>r",
-	":<C-u>MoltenEvaluateVisual<CR>gv",
-	{ desc = "execute visual selection", silent = true }
+	"<leader>ji",
+	":noautocmd MoltenEnterOutput<CR>",
+	{ desc = "inspect output window", silent = true }
 )
 vim.keymap.set(
 	"n",
-	"<localleader>oh",
+	"<leader>jw",
 	":MoltenHideOutput<CR>",
 	{ desc = "close output window", silent = true }
 )
+
 vim.keymap.set(
 	"n",
-	"<localleader>md",
+	"<leader>jR",
+	":MoltenReevaluateCell<CR>",
+	{ desc = "re-eval cell", silent = true }
+)
+
+vim.keymap.set(
+	"n",
+	"<localleader>jd",
 	":MoltenDelete<CR>",
 	{ desc = "delete Molten cell", silent = true }
 )
@@ -39,18 +49,12 @@ vim.keymap.set(
 -- if you work with html outputs:
 vim.keymap.set(
 	"n",
-	"<localleader>mx",
+	"<leader>jb",
 	":MoltenOpenInBrowser<CR>",
 	{ desc = "open output in browser", silent = true }
 )
 
-vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>")
-vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>")
-vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>")
-vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv")
-vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>")
-vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>")
-vim.keymap.set("n", "<localleader>md", ":MoltenDelete<CR>")
+vim.keymap.set("n", "<leader>jI", ":MoltenInit<CR>")
 
 -- local runner = require("quarto.runner")
 
@@ -59,21 +63,16 @@ local ok, runner = pcall(require, "quarto.runner")
 if not ok then
 	print("NO RUNNER FOR QUARTO")
 end
-vim.keymap.set("n", "<leader>rc", runner.run_cell, { desc = "run cell", silent = true })
+
+vim.keymap.set("n", "<leader>jr", runner.run_cell, { desc = "run cell", silent = true })
 vim.keymap.set(
 	"n",
-	"<localleader>ra",
+	"<localleader>ja",
 	runner.run_above,
 	{ desc = "run cell and above", silent = true }
 )
-vim.keymap.set("n", "<localleader>rA", runner.run_all, { desc = "run all cells", silent = true })
-vim.keymap.set("n", "<localleader>rl", runner.run_line, { desc = "run line", silent = true })
-vim.keymap.set(
-	"v",
-	"<localleader>r",
-	runner.run_range,
-	{ desc = "run visual range", silent = true }
-)
-vim.keymap.set("n", "<localleader>RA", function()
+vim.keymap.set("n", "<leader>ja", runner.run_all, { desc = "run all cells", silent = true })
+
+vim.keymap.set("n", "<leader>RA", function()
 	runner.run_all(true)
 end, { desc = "run all cells of all languages", silent = true })

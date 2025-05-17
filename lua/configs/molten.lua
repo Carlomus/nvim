@@ -41,7 +41,7 @@ vim.keymap.set(
 
 vim.keymap.set(
 	"n",
-	"<localleader>jd",
+	"<leader>jd",
 	":MoltenDelete<CR>",
 	{ desc = "delete Molten cell", silent = true }
 )
@@ -56,8 +56,6 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>jI", ":MoltenInit<CR>")
 
--- local runner = require("quarto.runner")
-
 local ok, runner = pcall(require, "quarto.runner")
 
 if not ok then
@@ -65,14 +63,5 @@ if not ok then
 end
 
 vim.keymap.set("n", "<leader>jr", runner.run_cell, { desc = "run cell", silent = true })
-vim.keymap.set(
-	"n",
-	"<localleader>ja",
-	runner.run_above,
-	{ desc = "run cell and above", silent = true }
-)
+vim.keymap.set("n", "<leader>jA", runner.run_above, { desc = "run cell and above", silent = true })
 vim.keymap.set("n", "<leader>ja", runner.run_all, { desc = "run all cells", silent = true })
-
-vim.keymap.set("n", "<leader>RA", function()
-	runner.run_all(true)
-end, { desc = "run all cells of all languages", silent = true })

@@ -9,7 +9,7 @@ return {
 		config = function()
 			require("configs.quarto")
 		end,
-		ft = { "quarto", "markdown" },
+		ft = { "ipynb", "quarto", "markdown" },
 	},
 	{
 		"3rd/image.nvim",

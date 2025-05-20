@@ -53,17 +53,53 @@ return {
 			return require("configs.molten")
 		end,
 	},
+	-- {
+	--   "goerz/jupytext.nvim",
+	--   version = "0.2.0",
+	--   lazy    = false,            -- ← load on startup
+	--   opts    = {
+	--     -- the two lines that call `require("jupytext")`
+	--     filetype     = require("jupytext").get_filetype,
+	--     new_template = require("jupytext").default_new_template(),
+	--
+	--     -- anything you actually want to customise
+	--     format          = "markdown",
+	--     sync_patterns   = { "*.md", "*.py", "*.jl", "*.R", "*.Rmd", "*.qmd" },
+	--     autosync        = true,
+	--     handle_url_schemes = true,
+	--   },
+	-- },
 	{
-		"GCBallesteros/jupytext.nvim",
-		lazy = false,
+		"goerz/jupytext.nvim",
+		version = "0.2.0",
+		event = {
+			"BufReadPre *.ipynb",
+			"BufNewFile *.ipynb",
+			"BufReadPre *.md",
+		},
 		config = function()
-			require("jupytext").setup({
-				style = "markdown",
-				output_extension = "md",
-				force_ft = "markdown",
+			local jt = require("jupytext")
+			jt.setup({
+				format = "markdown",
+				sync_patterns = { "*.md", "*.jl", "*.R", "*.Rmd", "*.qmd" },
+				autosync = true,
+				handle_url_schemes = true,
+				filetype = jt.get_filetype,
+				new_template = jt.default_new_template(),
 			})
 		end,
 	},
+	-- {
+	-- 	"GCBallesteros/jupytext.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("jupytext").setup({
+	-- 			style = "markdown",
+	-- 			output_extension = "md",
+	-- 			force_ft = "markdown",
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"nvchad/base46",
 		build = function()

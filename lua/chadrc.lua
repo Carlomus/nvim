@@ -1,6 +1,6 @@
 local options = {
 	base46 = {
-		theme = "aylin",
+		theme = "tokyodark",
 		hl_add = {},
 		hl_override = {
 			-- nvim-tree Git indicators
@@ -15,7 +15,7 @@ local options = {
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
-		theme_toggle = { "aylin", "one_light" },
+		theme_toggle = { "tokyodark", "one_light" },
 	},
 
 	ui = {

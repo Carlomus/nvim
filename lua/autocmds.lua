@@ -93,7 +93,7 @@ local grp = vim.api.nvim_create_augroup("MoltenAutostart", { clear = false })
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = grp,
-	pattern = { "markdown", "quarto", "python", "ipynb", "md" },
+	pattern = { "markdown", "quarto", "ipynb", "md" },
 	callback = function()
 		if vim.fn.exists(":MoltenInit") == 0 then
 			require("lazy").load({ plugins = { "molten-nvim" } })

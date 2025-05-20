@@ -1,3 +1,5 @@
+local file_ops = require("lsp-file-operations")
+file_ops.setup()
 local M = {}
 local map = vim.keymap.set
 
@@ -46,6 +48,8 @@ M.capabilities.textDocument.completion.completionItem = {
 		},
 	},
 }
+
+M.capabilities = vim.tbl_deep_extend("force", M.capabilities, file_ops.default_capabilities())
 
 M.defaults = function()
 	dofile(vim.g.base46_cache .. "lsp")

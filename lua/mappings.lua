@@ -18,7 +18,6 @@ map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
@@ -31,7 +30,8 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 -- Duplicate line
-map("n", "<leader>D", "yyp", { desc = "duplicate line" })
+map("n", "<C-c>", "yyp", { desc = "duplicate line" })
+map("n", "<C-a>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
@@ -50,11 +50,11 @@ map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic locli
 -- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
 
-map("n", "<tab>", function()
+map("n", "<S-tab>", function()
 	require("nvchad.tabufline").next()
 end, { desc = "buffer goto next" })
 
-map("n", "<S-tab>", function()
+map("n", "<S-'>", function()
 	require("nvchad.tabufline").prev()
 end, { desc = "buffer goto prev" })
 
@@ -77,7 +77,7 @@ map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "telescope find mark
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
 map(
 	"n",
-	"<leader>fz",
+	"<leader>fh",
 	"<cmd>Telescope current_buffer_fuzzy_find<CR>",
 	{ desc = "telescope find in current buffer" }
 )

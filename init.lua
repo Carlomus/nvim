@@ -5,10 +5,6 @@ end
 vim.g.mapleader = " "
 vim.g.python3_host_prog = vim.fn.exepath("python3")
 
-local theme = require("theme")
-theme.load()
-theme.autosave()
-
 require("filetypes")
 
 -- bootstrap lazy and all plugins
@@ -30,3 +26,7 @@ require("options")
 require("autocmds")
 require("mappings")
 require("servers")
+
+local theme = require("theme")
+theme.autosave()
+theme.load()

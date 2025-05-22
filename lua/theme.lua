@@ -8,7 +8,6 @@ function M.load()
 	local ok, lines = pcall(vim.fn.readfile, theme_file)
 	if ok and lines[1] and #lines[1] > 0 then
 		pcall(vim.cmd.colorscheme, lines[1])
-		vim.notify(lines[1])
 	end
 end
 

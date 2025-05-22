@@ -2,12 +2,17 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 -- Start with blocks of code opened up
-autocmd("BufWinEnter", {
-	group = augroup("OpenFolds", { clear = true }),
-	pattern = "*",
-	callback = function()
-		vim.cmd("normal! zx")
-		vim.cmd("normal! zR")
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ctx)
+		local client = assert(vim.lsp.get_client_by_id(ctx.data.client_id))
+		if
+			client
+			and client.supports_method
+			and client:supports_method("textDocument/foldingRange")
+		then
+			vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+			vim.cmd("normal! zR")
+		end
 	end,
 })
 

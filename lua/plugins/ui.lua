@@ -43,8 +43,8 @@ M = {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		oevent = "BufReadPost",
-		pts = {
+		event = "BufReadPost",
+		ops = {
 			indent = { char = "│", highlight = "IblChar" },
 			scope = { char = "│", highlight = "IblScopeChar" },
 		},

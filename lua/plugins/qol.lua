@@ -1,7 +1,7 @@
 M = {
 	{
 		"folke/which-key.nvim",
-		keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+		lazy = false,
 		cmd = "WhichKey",
 		opts = function()
 			return {}
@@ -37,6 +37,17 @@ M = {
 			-- setup cmp for autopairs
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+		end,
+	},
+	{
+		"chrisgrieser/nvim-origami",
+		event = "VeryLazy",
+		opts = {}, -- needed even when using default config
+
+		-- recommended: disable vim's auto-folding
+		init = function()
+			vim.opt.foldlevel = 99
+			vim.opt.foldlevelstart = 99
 		end,
 	},
 }

@@ -36,7 +36,6 @@ return {
 	},
 	-- lsp stuff
 	require("plugins.lsp"),
-
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },

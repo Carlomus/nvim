@@ -1,40 +1,44 @@
-servers = {
-	-- ───── Lua ─────
-	"lua-language-server", -- LSP
-	"stylua", -- formatter
-
-	-- ───── HTML / CSS  ─────
-	"html-lsp", -- LSP
-	"css-lsp", -- LSP   (a.k.a. cssls)
-	"emmet-ls", -- optional: expander in JSX/HTML
-	"prettierd", -- fast daemon-version of Prettier
-
-	-- ───── Python ─────
-	"pyright", -- LSP
-	"ruff", -- linter / rules / fixes
-	"black", -- formatter
-	"debugpy", -- DAP adapter (if you install nvim-dap)
-
-	-- ───── Rust ─────
-	"rust-analyzer", -- LSP
-	"rustfmt", -- formatter (runs via cargo)
-	"codelldb", -- DAP adapter (for nvim-dap)
-	"taplo", -- TOML LSP (useful because Rust = Cargo.toml)
-	-- "starpls"
-
-	-- ───── Common utilities (optional but handy) ─────
-	"json-lsp", -- JSON schemas & completion
-	"yaml-language-server", -- YAML
-	"bash-language-server", -- Bash scripts
-	"shfmt", -- Bash formatter
-	"shellcheck", -- Bash linter
+-- Full list of tools to install via Mason
+local lsps = {
+	"lua_ls",
+	"html",
+	"cssls",
+	"pyright",
+	"rust_analyzer",
+	"taplo", -- TOML LSP
+	"jsonls", -- JSON
+	"bashls", -- Bash
+	"yamlls", -- YAML
 }
 
+local formatters = {
+	"stylua",
+	"black",
+	"rustfmt",
+	"shfmt",
+}
+
+local daps = {
+	"debugpy",
+	"codelldb",
+}
+
+local linters = {
+	"ruff",
+	"shellcheck",
+}
+
+local others = {
+	"emmet-ls",
+	"prettierd",
+}
+
+local servers = vim.tbl_flatten({ lsps, formatters, daps, linters, others })
+
+-- MasonInstallAll command
 vim.api.nvim_create_user_command("MasonInstallAll", function()
-	-- map lspconfig server → Mason package
-	-- tell Mason to install them all in one shot
-	-- (quote the args if you ever have spaces in a package name)
 	vim.cmd("MasonInstall " .. table.concat(servers, " "))
 end, { desc = "Install every LSP/tool in the servers table with Mason" })
 
-return servers
+-- Export only LSPs for use with `lspconfig`
+return lsps

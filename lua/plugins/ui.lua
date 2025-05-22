@@ -3,10 +3,27 @@ M = {
 		"nvim-tree/nvim-web-devicons",
 		opts = function() end,
 	},
-	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+	{
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("bufferline").setup({})
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+					icons_enabled = true,
+					section_separators = { left = "", right = "" },
+					component_separators = { left = "", right = "" },
+				},
+			})
+		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",

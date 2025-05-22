@@ -22,6 +22,7 @@ o.smartindent = true
 o.tabstop = 4
 o.softtabstop = 4
 
+vim.o.winbar = " "
 opt.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true

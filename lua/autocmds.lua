@@ -2,10 +2,13 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 -- Start with blocks of code opened up
-autocmd({ "BufReadPost", "FileReadPost" }, {
+autocmd("BufWinEnter", {
 	group = augroup("OpenFolds", { clear = true }),
 	pattern = "*",
-	command = "normal! zR",
+	callback = function()
+		vim.cmd("normal! zx")
+		vim.cmd("normal! zR")
+	end,
 })
 
 -- Highlight yanked text ──────────────────────────────────

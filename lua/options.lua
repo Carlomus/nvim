@@ -3,8 +3,8 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- options ------------------------------------------
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 o.laststatus = 3
 vim.o.showtabline = 1

@@ -5,4 +5,7 @@ return {
 		use_languagetree = true,
 	},
 	indent = { enable = false },
+	folds = {
+		enable = true,
+	},
 }

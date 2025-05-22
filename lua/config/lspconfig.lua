@@ -1,4 +1,4 @@
-local virtual_text_enabled = true
+local virtual_text_enabled = false
 local map = vim.keymap.set
 
 local file_ops = require("lsp-file-operations")
@@ -95,6 +95,15 @@ M.defaults = function()
 		})
 	end
 
+	lspconfig.pyright.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		root_dir = function(fname)
+			local util = require("lspconfig.util")
+			return util.find_git_ancestor(fname) or vim.fn.getcwd()
+		end,
+	})
 	-- Lua-specific LSP setup with settings
 	lspconfig.lua_ls.setup({
 		capabilities = M.capabilities,

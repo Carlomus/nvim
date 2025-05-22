@@ -36,13 +36,7 @@ local options = {
 			},
 		},
 
-		black = {
-			prepend_args = {
-				"--line-length",
-				"100",
-				"--skip-string-normalization",
-			},
-		},
+		black = {},
 	},
 }
 

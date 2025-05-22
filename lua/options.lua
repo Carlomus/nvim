@@ -3,6 +3,9 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- options ------------------------------------------
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 o.laststatus = 3
 o.showmode = false
 vim.opt.scrolloff = 12

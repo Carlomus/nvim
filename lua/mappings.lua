@@ -30,8 +30,10 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 -- Duplicate line
-map("n", "<C-c>", "yyp", { desc = "duplicate line" })
-map("n", "<C-a>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+map("n", "<C-d>", "yyp", { desc = "duplicate line" })
+map("n", "C-c", "yy", { desc = "copy line" })
+map("n", "<C-A>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+map("n", "<C-p>", "ddp", { desc = "replace line" })
 
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
@@ -43,6 +45,10 @@ map({ "n", "v" }, "dd", '"_dd', { desc = "delete line (black-hole)" })
 map({ "n", "x" }, "<leader>h", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "general format file" })
+
+-- buffer navigation
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })

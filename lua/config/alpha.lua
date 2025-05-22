@@ -2,49 +2,12 @@
 
 local options = {}
 
--- To split our quote, artist and source.
--- And automatically center it for screen loader of the header.
-local function split(s)
-	local t = {}
-	local max_line_length = vim.o.columns
-	local longest = 0 -- Value of longest string is 0 by default
-	for far in s:gmatch("[^\r\n]+") do
-		-- Break the line if it's actually bigger than terminal columns
-		local line
-		far:gsub("(%s*)(%S+)", function(spc, word)
-			if not line or #line + #spc + #word > max_line_length then
-				if line then
-					table.insert(t, line)
-				end
-				line = word
-			else
-				line = line .. spc .. word
-				longest = max_line_length
-			end
-		end)
-		-- Get the string that is the longest
-		if #line > longest then
-			longest = #line
-		end
-		table.insert(t, line)
-	end
-	-- Center all strings by the longest
-	for i = 1, #t do
-		local space = longest - #t[i]
-		local left = math.floor(space / 2)
-		local right = space - left
-		t[i] = string.rep(" ", left) .. t[i] .. string.rep(" ", right)
-	end
-	return t
-end
-
 -- Create button for initial keybind.
 --- @param sc string
 --- @param txt string
 --- @param hl string
 --- @param keybind string optional
---- @param keybind_opts table optional
-local function button(sc, txt, hl, keybind, keybind_opts)
+local function button(sc, txt, hl, keybind)
 	local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
 	local opts = {
@@ -57,8 +20,7 @@ local function button(sc, txt, hl, keybind, keybind_opts)
 	}
 
 	if keybind then
-		keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
-		opts.keymap = { "n", sc_, keybind, keybind_opts }
+		opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true, nowait = true } }
 	end
 
 	local function on_press()

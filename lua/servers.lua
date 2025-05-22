@@ -33,7 +33,7 @@ local others = {
 	"prettierd",
 }
 
-local servers = vim.tbl_flatten({ lsps, formatters, daps, linters, others })
+local servers = vim.iter({ lsps, formatters, daps, linters, others }):flatten():totable()
 
 -- MasonInstallAll command
 vim.api.nvim_create_user_command("MasonInstallAll", function()

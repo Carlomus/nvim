@@ -10,30 +10,8 @@ return {
 			return require("config.nvimtree")
 		end,
 	},
-	{
-		"folke/which-key.nvim",
-		keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
-		cmd = "WhichKey",
-		opts = function()
-			return {}
-		end,
-	},
-	-- formatting
-	{
-		"stevearc/conform.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = function()
-			return require("config.conform")
-		end,
-	},
-	-- git stuff
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "User FilePost",
-		opts = function()
-			return require("config.gitsigns")
-		end,
-	},
+	-- Quality of life
+	require("plugins.qol"),
 	-- lsp stuff
 	require("plugins.lsp"),
 	{
@@ -66,19 +44,21 @@ return {
 			require("lsp-file-operations").setup()
 		end,
 	},
-	-- autopairing of (){}[] etc
 	{
-		"windwp/nvim-autopairs",
-		opts = {
-			fast_wrap = {},
-			disable_filetype = { "TelescopePrompt", "vim" },
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		cmd = { "ToggleTerm", "TermExec" },
+		keys = {
+			{ "<A-.>", "<cmd>ToggleTerm direction=float<CR>", desc = "Float terminal" },
+			{ "<A-/>", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Horizontal terminal" },
 		},
-		config = function(_, opts)
-			require("nvim-autopairs").setup(opts)
-
-			-- setup cmp for autopairs
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-		end,
+		opts = {
+			open_mapping = [[<c-\>]],
+			size = 12,
+			shade_terminals = true,
+			start_in_insert = true,
+			persist_size = true,
+			close_on_exit = true,
+		},
 	},
 }

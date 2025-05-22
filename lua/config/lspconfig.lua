@@ -85,6 +85,6 @@ M.defaults = function()
 	end
 end
 
-vim.lsp.enable(require("configs.lspservers"))
+vim.lsp.enable(require("config.lspservers"))
 
 return M

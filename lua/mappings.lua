@@ -31,9 +31,10 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 -- Duplicate line
 map("n", "<C-d>", "yyp", { desc = "duplicate line" })
-map("n", "C-c", "yy", { desc = "copy line" })
+map("n", "C-y", "yy", { desc = "copy line" })
 map("n", "<C-A>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-map("n", "<C-p>", "ddp", { desc = "replace line" })
+map("n", "<C-p>", "o<ESC>p", { desc = "paste on new line" })
+map("n", "<C-o>", "ddp", { desc = "overwrite line" })
 
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })

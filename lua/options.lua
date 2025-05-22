@@ -7,6 +7,7 @@ local g = vim.g
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 o.laststatus = 3
+vim.o.showtabline = 1
 o.showmode = false
 vim.opt.scrolloff = 12
 

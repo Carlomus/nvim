@@ -13,11 +13,15 @@ M = {
 				options = {
 					mode = "buffers",
 					diagnostics = "nvim_lsp",
-					separator_style = "box",
+					separator_style = "thick",
 					show_buffer_close_icons = false,
 					show_close_icon = false,
 					enforce_regular_tabs = true,
 					always_show_bufferline = true,
+					numbers = "ordinal",
+					indicator = {
+						style = "underline",
+					},
 				},
 			})
 		end,

@@ -39,17 +39,17 @@ M = {
 			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
-	{
-		"chrisgrieser/nvim-origami",
-		event = "VeryLazy",
-		opts = {}, -- needed even when using default config
-
-		-- recommended: disable vim's auto-folding
-		init = function()
-			vim.opt.foldlevel = 99
-			vim.opt.foldlevelstart = 99
-		end,
-	},
+	-- {
+	-- 	"chrisgrieser/nvim-origami",
+	-- 	event = "VeryLazy",
+	-- 	opts = {}, -- needed even when using default config
+	--
+	-- 	-- recommended: disable vim's auto-folding
+	-- 	init = function()
+	-- 		vim.opt.foldlevel = 99
+	-- 		vim.opt.foldlevelstart = 99
+	-- 	end,
+	-- },
 }
 
 return M

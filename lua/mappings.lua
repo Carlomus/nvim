@@ -31,10 +31,11 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 -- Duplicate line
-map("n", "<C-v>", "yyp", { desc = "duplicate line" })
+-- map("n", "<C-v>", "yyp", { desc = "duplicate line" })
 map("n", "<C-A>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 map("n", "<C-p>", "o<ESC>p", { desc = "paste on new line" })
 map("n", "<leader>o", 'V"_dP', { desc = "Overwrite line with last yanked or deleted line" })
+map("n", "<leader>yaf", "v[{]}y", { desc = "Yank current fold" })
 
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
@@ -50,9 +51,16 @@ end, { desc = "general format file" })
 -- buffer navigation
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
+map("n", "<leader>bv", function()
+	vim.cmd("vsplit")
+	-- If you want to close the original buffer window:
+	vim.cmd("wincmd p") -- go back to original window
+	vim.cmd("bd") -- close buffer in original window
+end, { desc = "Move buffer to new vertical split" })
 
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 
 -- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
@@ -97,7 +105,7 @@ map("n", "<leader>th", function()
 end, { desc = "Pick theme" })
 
 -- terminal
-map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+map("t", "<A-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })

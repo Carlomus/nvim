@@ -25,15 +25,7 @@ local options = {
 		},
 
 		prettier = {
-			prepend_args = {
-				"--single-quote",
-				"--print-width",
-				"100",
-				"--no-semi",
-				"--tab-width",
-				"4",
-				"--use-tabs",
-			},
+			prepend_args = {},
 		},
 
 		black = {},

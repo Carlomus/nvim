@@ -30,3 +30,6 @@ require("servers")
 local theme = require("theme")
 theme.autosave()
 theme.load()
+
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99

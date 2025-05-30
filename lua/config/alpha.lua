@@ -39,9 +39,7 @@ end
 -- All custom headers
 local headers = require("others/headers")
 
---
 -- Sections for Alpha.
---
 
 local header = {
 	type = "text",
@@ -64,8 +62,8 @@ local buttons = {
 	type = "group",
 	val = {
 		button("e", "  New Buffer", "RainbowRed", ":tabnew<CR>"),
-		button("f", "  Find file", "RainbowYellow", ":Telescope find_files<CR>"),
-		button("h", "  Recently opened files", "RainbowBlue", ":Telescope oldfiles<CR>"),
+		button("f", "  Find file", "RainbowYellow", ":Telescope find_files<CR>"),
+		button("h", "  Recently opened files", "RainbowBlue", ":Telescope oldfiles<CR>"),
 		button("l", "  Projects", "RainbowOrange", ":Telescope marks<CR>"),
 		--button("r", "  Frecency/MRU",          'RainbowCyan', ':Telescope oldfiles<CR>'),
 		button(
@@ -81,9 +79,7 @@ local buttons = {
 	},
 }
 
---
 -- Centering handler of ALPHA
---
 
 local ol = { -- occupied lines
 	icon = #header.val, -- CONST: number of lines that your header will occupy
@@ -101,9 +97,7 @@ if left_terminal_value >= 0 then
 	local top_padding = math.floor(left_terminal_value / 2)
 	local bottom_padding = left_terminal_value - top_padding
 
-	--
 	-- Set alpha sections
-	--
 
 	options = {
 		layout = {

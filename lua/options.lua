@@ -53,6 +53,11 @@ g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 
+o.foldlevel = 99
+o.foldlevelstart = 99
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 local sep = is_windows and "\\" or "/"

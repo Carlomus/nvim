@@ -51,6 +51,7 @@ return {
 		keys = {
 			{ "<A-.>", "<cmd>ToggleTerm direction=float<CR>", desc = "Float terminal" },
 			{ "<A-/>", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Horizontal terminal" },
+			{ "<A-?>", "<cmd>ToggleTerm direction=vertical<CR>", desc = "Vertical terminal" },
 		},
 		opts = {
 			open_mapping = [[<c-\>]],

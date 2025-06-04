@@ -1,10 +1,11 @@
 -- Full list of tools to install via Mason
 local lsps = {
-	"lua_ls",
-	"html",
+	"lua-language-server",
+	"html-lsp",
 	"cssls",
 	"pyright",
 	"rust_analyzer",
+	"clangd",
 	"taplo", -- TOML LSP
 	"jsonls", -- JSON
 	"bashls", -- Bash

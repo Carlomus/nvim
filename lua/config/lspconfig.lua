@@ -103,6 +103,13 @@ M.defaults = function()
 			local util = require("lspconfig.util")
 			return util.find_git_ancestor(fname) or vim.fn.getcwd()
 		end,
+		settings = {
+			python = {
+				analysis = {
+					typeCheckingMode = "off",
+				},
+			},
+		},
 	})
 	-- Lua-specific LSP setup with settings
 	lspconfig.lua_ls.setup({

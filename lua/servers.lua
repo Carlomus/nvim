@@ -1,15 +1,14 @@
--- Full list of tools to install via Mason
-local lsps = {
+-- 1) Which “package names” Mason should install:
+local mason_packages = {
 	"lua-language-server",
 	"html-lsp",
-	"cssls",
 	"pyright",
-	"rust_analyzer",
+	"rust-analyzer",
 	"clangd",
-	"taplo", -- TOML LSP
-	"jsonls", -- JSON
-	"bashls", -- Bash
-	"yamlls", -- YAML
+	"taplo",
+	"json-lsp", -- or "json-lsp" if your Mason registry says so
+	"bash-language-server", -- or "bashls" if that’s what your Mason registry shows
+	"yaml-language-server", -- or "yamlls"
 }
 
 local formatters = {
@@ -34,12 +33,27 @@ local others = {
 	"prettierd",
 }
 
-local servers = vim.iter({ lsps, formatters, daps, linters, others }):flatten():totable()
+-- Combine everything so that `:MasonInstallAll` will install all tools
+local all_packages =
+	vim.iter({ mason_packages, formatters, daps, linters, others }):flatten():totable()
 
--- MasonInstallAll command
 vim.api.nvim_create_user_command("MasonInstallAll", function()
-	vim.cmd("MasonInstall " .. table.concat(servers, " "))
-end, { desc = "Install every LSP/tool in the servers table with Mason" })
+	-- This will read: :MasonInstall <all_packages separated by spaces>
+	vim.cmd("MasonInstall " .. table.concat(all_packages, " "))
+end, { desc = "Install every LSP/tool in the all_packages list with Mason" })
 
--- Export only LSPs for use with `lspconfig`
-return lsps
+-- 2) Which “server names” LSPConfig actually needs to call .setup() on:
+--    These must match lspconfig’s `:help lspconfig-servers` entries.
+local lspconfig_servers = {
+	-- "lua_ls", --Handled separately
+	"html",
+	-- "pyright", -- handled separately
+	"rust_analyzer",
+	"clangd",
+	"taplo",
+	"jsonls",
+	"bashls",
+	"yamlls",
+}
+
+return lspconfig_servers

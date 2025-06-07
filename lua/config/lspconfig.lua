@@ -101,7 +101,10 @@ M.defaults = function()
 		on_init = M.on_init,
 		root_dir = function(fname)
 			local util = require("lspconfig.util")
-			return util.find_git_ancestor(fname) or vim.fn.getcwd()
+			-- Prioritize nearest pyrightconfig.json, then fallback to git
+			return util.root_pattern("pyrightconfig.json", "pyproject.toml")(fname)
+				or util.find_git_ancestor(fname)
+				or vim.fn.getcwd()
 		end,
 		settings = {
 			python = {

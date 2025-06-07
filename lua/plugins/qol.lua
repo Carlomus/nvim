@@ -1,4 +1,5 @@
 M = {
+	"karb94/neoscroll.nvim",
 	{
 		"folke/which-key.nvim",
 		lazy = false,
@@ -38,6 +39,18 @@ M = {
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
+	},
+	{
+		"rmagatti/auto-session",
+		lazy = false,
+
+		---enables autocomplete for opts
+		---@module "auto-session"
+		---@type AutoSession.Config
+		opts = {
+			suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+			-- log_level = 'debug',
+		},
 	},
 	-- {
 	-- 	"chrisgrieser/nvim-origami",

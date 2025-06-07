@@ -49,7 +49,7 @@ map({ "n", "x" }, "<leader>h", function()
 end, { desc = "general format file" })
 
 -- buffer navigation
-map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<C-Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 map("n", "<leader>bv", function()
 	vim.cmd("vsplit")

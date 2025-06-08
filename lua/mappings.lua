@@ -49,7 +49,7 @@ map({ "n", "x" }, "<leader>h", function()
 end, { desc = "general format file" })
 
 -- buffer navigation
-map("n", "<C-Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<A-Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 map("n", "<leader>bv", function()
 	vim.cmd("vsplit")
@@ -97,8 +97,8 @@ map("n", "<leader>th", function()
 		enable_preview = true,
 		layout_strategy = "horizontal",
 		layout_config = {
-			height = 0.20, -- 50 % tall
-			width = 0.30, -- 60 % wide
+			height = 0.20, -- 20 % tall
+			width = 0.30, -- 30 % wide
 			preview_width = 0, -- % of the picker width
 		},
 	})

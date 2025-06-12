@@ -1,5 +1,11 @@
 M = {
-	"karb94/neoscroll.nvim",
+	{
+		"karb94/neoscroll.nvim",
+		lazy = false,
+		config = function()
+			require("config.neoscroll")
+		end,
+	},
 	{
 		"folke/which-key.nvim",
 		lazy = false,

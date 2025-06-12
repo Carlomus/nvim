@@ -31,10 +31,9 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 -- Duplicate line
--- map("n", "<C-v>", "yyp", { desc = "duplicate line" })
-map("n", "<C-A>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+map("n", "<C-a>", [[:normal! mmggVG`m<CR>]], { desc = "Visually select entire file and return" })
 map("n", "<C-p>", "o<ESC>p", { desc = "paste on new line" })
-map("n", "<leader>o", 'V"_dP', { desc = "Overwrite line with last yanked or deleted line" })
+map("n", "<leader>o", '"_ddP', { desc = "Overwrite line with last yanked or deleted line" })
 map("n", "<leader>yaf", "v[{]}y", { desc = "Yank current fold" })
 
 -- Toggle spell check
@@ -42,21 +41,16 @@ map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 
 -- d goes to black holei
 map({ "n", "v" }, "d", '"_d', { desc = "delete (black-hole)" })
-map({ "n", "v" }, "dd", '"_dd', { desc = "delete line (black-hole)" })
+map({ "n", "v" }, "<leader>d", "d", { desc = "delete and yank (default)" })
 
 map({ "n", "x" }, "<leader>h", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "general format file" })
 
 -- buffer navigation
-map("n", "<A-Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
-map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
-map("n", "<leader>bv", function()
-	vim.cmd("vsplit")
-	-- If you want to close the original buffer window:
-	vim.cmd("wincmd p") -- go back to original window
-	vim.cmd("bd") -- close buffer in original window
-end, { desc = "Move buffer to new vertical split" })
+map("n", "<S-Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+map("n", "<C-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
+map("n", "<leader>bv", "<cmd>vsplit<CR>", { desc = "Move buffer to new vertical split" })
 
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })

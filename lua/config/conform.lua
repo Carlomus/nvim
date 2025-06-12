@@ -1,9 +1,11 @@
 local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "black" },
+		python = { "ruff" },
 		css = { "prettier" },
 		html = { "prettier" },
+		c = { "clang-format" },
+		cpp = { "clang-format" },
 	},
 
 	format_on_save = {
@@ -25,24 +27,10 @@ local options = {
 		},
 
 		prettier = {
-			prepend_args = {
-				"--single-quote",
-				"--print-width",
-				"100",
-				"--no-semi",
-				"--tab-width",
-				"4",
-				"--use-tabs",
-			},
+			prepend_args = {},
 		},
 
-		black = {
-			prepend_args = {
-				"--line-length",
-				"100",
-				"--skip-string-normalization",
-			},
-		},
+		black = {},
 	},
 }
 

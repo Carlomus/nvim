@@ -3,7 +3,11 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- options ------------------------------------------
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
 o.laststatus = 3
+vim.o.showtabline = 1
 o.showmode = false
 vim.opt.scrolloff = 12
 
@@ -18,6 +22,7 @@ o.smartindent = true
 o.tabstop = 4
 o.softtabstop = 4
 
+vim.o.winbar = " "
 opt.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true
@@ -47,6 +52,11 @@ opt.whichwrap:append("<>[]hl")
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
+
+o.foldlevel = 99
+o.foldlevelstart = 99
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0

@@ -1,28 +1,21 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-
--- user event that loads after UIEnter + only if file buf is there
-autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
-	group = augroup("NvFilePost", { clear = true }),
-	callback = function(args)
-		local file = vim.api.nvim_buf_get_name(args.buf)
-		local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
-
-		if not vim.g.ui_entered and args.event == "UIEnter" then
-			vim.g.ui_entered = true
-		end
-
-		if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
-			vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
-			vim.api.nvim_del_augroup_by_name("NvFilePost")
-
-			vim.schedule(function()
-				vim.api.nvim_exec_autocmds("FileType", {})
-
-				if vim.g.editorconfig then
-					require("editorconfig").config(args.buf)
-				end
-			end)
+local opt = vim.opt
+local o = vim.o
+-- Start with blocks of code opened up
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ctx)
+		local client = assert(vim.lsp.get_client_by_id(ctx.data.client_id))
+		if
+			client
+			and client.supports_method
+			and client:supports_method("textDocument/foldingRange")
+		then
+			vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+			o.foldlevel = 99
+			o.foldlevelstart = 99
+			opt.foldlevel = 99
+			opt.foldlevelstart = 99
 		end
 	end,
 })
@@ -88,30 +81,30 @@ autocmd("TermOpen", {
 	command = "startinsert",
 })
 
--- lua/autocmds/molten_init.lua
-local grp = vim.api.nvim_create_augroup("MoltenAutostart", { clear = false })
-
-vim.api.nvim_create_autocmd("FileType", {
-	group = grp,
-	pattern = { "markdown", "quarto", "ipynb", "md" },
-	callback = function()
-		if vim.fn.exists(":MoltenInit") == 0 then
-			require("lazy").load({ plugins = { "molten-nvim" } })
-		end
-		if not (#vim.fn.MoltenRunningKernels({ true }) > 0) then
-			vim.cmd("MoltenInit base") -- use the 'base' conda env
-		end
-		pcall(vim.api.nvim_command, "silent! MoltenImportOutput")
-	end,
-})
-
--- 2. export inline outputs back into the .ipynb every save
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = grp,
-	pattern = "*.ipynb",
-	command = "silent! MoltenExportOutput!",
-})
-
+-- -- lua/autocmds/molten_init.lua
+-- local grp = vim.api.nvim_create_augroup("MoltenAutostart", { clear = false })
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	group = grp,
+-- 	pattern = { "markdown", "quarto", "ipynb", "md" },
+-- 	callback = function()
+-- 		if vim.fn.exists(":MoltenInit") == 0 then
+-- 			require("lazy").load({ plugins = { "molten-nvim" } })
+-- 		end
+-- 		if not (#vim.fn.MoltenRunningKernels({ true }) > 0) then
+-- 			vim.cmd("MoltenInit base") -- use the 'base' conda env
+-- 		end
+-- 		pcall(vim.api.nvim_command, "silent! MoltenImportOutput")
+-- 	end,
+-- })
+--
+-- -- 2. export inline outputs back into the .ipynb every save
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = grp,
+-- 	pattern = "*.ipynb",
+-- 	command = "silent! MoltenExportOutput!",
+-- })
+--
 -- 3. optional: detach gitsigns for raw .ipynb buffers (diff noise)
 -- vim.api.nvim_create_autocmd("BufReadPost", {
 --   pattern = "*.ipynb",
@@ -121,47 +114,47 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 --   end,
 -- })
 
--- lua/autocmds/quarto_activate.lua
-local aug = vim.api.nvim_create_augroup("QuartoAutoActivate", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufReadCmd", "BufReadPost" }, {
-	group = aug,
-	pattern = { "*.ipynb", "*.md", "*.qmd" },
-	callback = function()
-		if vim.fn.exists(":QuartoActivate") == 0 then
-			require("lazy").load({ plugins = { "quarto-nvim" } })
-		end
-
-		-- 2. defer one tick so Quarto can finish defining commands
-		vim.schedule(function()
-			if vim.fn.exists(":QuartoActivate") == 2 then
-				vim.cmd("silent! QuartoActivate")
-			end
-		end)
-	end,
-})
-
--- lua/autocmds/cursor_after_frontmatter.lua
-local jump_grp = vim.api.nvim_create_augroup("JumpAfterFrontMatter", { clear = false })
-
-vim.api.nvim_create_autocmd({ "BufReadCmd", "BufReadPost" }, {
-	group = jump_grp,
-	pattern = { "*.ipynb", "*.md", "*.qmd" },
-	callback = function()
-		if vim.fn.getline(1):match("^%-%-%-%s*$") then
-			-- line-by-line scan for the *next* --- that closes YAML front-matter
-			local last = vim.fn.line("$")
-			local lnum = 2
-			while lnum <= last and not vim.fn.getline(lnum):match("^%-%-%-%s*$") do
-				lnum = lnum + 1
-			end
-			if lnum <= last then
-				-- skip the closing --- and blank lines that follow
-				repeat
-					lnum = lnum + 1
-				until lnum > last or not vim.fn.getline(lnum):match("^%s*$")
-				vim.api.nvim_win_set_cursor(0, { lnum, 0 })
-			end
-		end
-	end,
-})
+-- -- lua/autocmds/quarto_activate.lua
+-- local aug = vim.api.nvim_create_augroup("QuartoAutoActivate", { clear = true })
+--
+-- vim.api.nvim_create_autocmd({ "BufReadCmd", "BufReadPost" }, {
+-- 	group = aug,
+-- 	pattern = { "*.ipynb", "*.md", "*.qmd" },
+-- 	callback = function()
+-- 		if vim.fn.exists(":QuartoActivate") == 0 then
+-- 			require("lazy").load({ plugins = { "quarto-nvim" } })
+-- 		end
+--
+-- 		-- 2. defer one tick so Quarto can finish defining commands
+-- 		vim.schedule(function()
+-- 			if vim.fn.exists(":QuartoActivate") == 2 then
+-- 				vim.cmd("silent! QuartoActivate")
+-- 			end
+-- 		end)
+-- 	end,
+-- })
+--
+-- -- lua/autocmds/cursor_after_frontmatter.lua
+-- local jump_grp = vim.api.nvim_create_augroup("JumpAfterFrontMatter", { clear = false })
+--
+-- vim.api.nvim_create_autocmd({ "BufReadCmd", "BufReadPost" }, {
+-- 	group = jump_grp,
+-- 	pattern = { "*.ipynb", "*.md", "*.qmd" },
+-- 	callback = function()
+-- 		if vim.fn.getline(1):match("^%-%-%-%s*$") then
+-- 			-- line-by-line scan for the *next* --- that closes YAML front-matter
+-- 			local last = vim.fn.line("$")
+-- 			local lnum = 2
+-- 			while lnum <= last and not vim.fn.getline(lnum):match("^%-%-%-%s*$") do
+-- 				lnum = lnum + 1
+-- 			end
+-- 			if lnum <= last then
+-- 				-- skip the closing --- and blank lines that follow
+-- 				repeat
+-- 					lnum = lnum + 1
+-- 				until lnum > last or not vim.fn.getline(lnum):match("^%s*$")
+-- 				vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+-- 			end
+-- 		end
+-- 	end,
+-- })

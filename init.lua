@@ -1,6 +1,23 @@
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
-vim.g.mapleader = " "
+--  Spy on every change to 'foldlevel'
+vim.api.nvim_create_autocmd("OptionSet", {
+	pattern = "foldlevel",
+	callback = function()
+		local src = debug.getinfo(2, "S") -- caller of :set
+		vim.notify(
+			("foldlevel → %s   (%s:%d)"):format(
+				vim.v.option_new,
+				src.short_src or "?",
+				src.linedefined or 0
+			)
+		)
+	end,
+})
 
+if vim.loader then
+	vim.loader.enable()
+end
+
+vim.g.mapleader = " "
 vim.g.python3_host_prog = vim.fn.exepath("python3")
 
 require("filetypes")
@@ -14,28 +31,17 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+local lazy_config = require("config.lazy")
 
-local lazy_config = require("configs.lazy")
-
--- load plugins
 require("lazy").setup({
-	{
-		"NvChad/NvChad",
-		lazy = false,
-		branch = "v2.5",
-		import = "nvchad.plugins",
-	},
-
 	{ import = "plugins" },
 }, lazy_config)
 
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-
 require("options")
 require("autocmds")
+require("mappings")
+require("servers")
 
-vim.schedule(function()
-	require("mappings")
-end)
+local theme = require("theme")
+theme.autosave()
+theme.load()

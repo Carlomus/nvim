@@ -12,15 +12,15 @@ return {
 			function()
 				local conda_env = vim.env.CONDA_DEFAULT_ENV
 				if conda_env then
-					return "  " .. conda_env
+					return " " .. conda_env
 				end
 
 				local venv = vim.env.VIRTUAL_ENV
 				if venv then
-					return "  " .. vim.fn.fnamemodify(venv, ":t")
+					return " " .. vim.fn.fnamemodify(venv, ":t")
 				end
 
-				return "  System" -- nothing active
+				return " System" -- nothing active
 			end,
 		},
 		-- lualine_c = {
@@ -36,10 +36,10 @@ return {
 		-- 	},
 		-- },
 		lualine_x = {
-			"fileformat",
 			"filetype",
+			"lsp_status",
 		},
-		lualine_y = { "progress" },
+		lualine_y = { "fileformat", "progress" },
 		lualine_z = { "location" },
 	},
 }

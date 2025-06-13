@@ -42,7 +42,7 @@ M = {
 		event = "BufReadPost",
 		opts = {
 			indent = {
-				char = "┆",
+				char = "¦", -- "┆",
 				highlight = { "IblIndent" },
 			},
 			scope = {

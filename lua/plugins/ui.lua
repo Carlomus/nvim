@@ -26,32 +26,38 @@ M = {
 			})
 		end,
 	},
+	-- { "SmiteshP/nvim-navic", event = "LspAttach", dependencies = { "neovim/nvim-lspconfig" } },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "auto",
-					icons_enabled = true,
-					section_separators = { left = "", right = "" },
-					component_separators = { left = "", right = "" },
-				},
-			})
+			local config = require("config.lualine")
+			require("lualine").setup(config)
 		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		-- dependencies = { "SmiteshP/nvim-navic" },
 		event = "BufReadPost",
-		ops = {
-			indent = { char = "│", highlight = "IblChar" },
-			scope = { char = "│", highlight = "IblScopeChar" },
+		opts = {
+			indent = {
+				char = "┆",
+				highlight = { "IblIndent" },
+			},
+			scope = {
+				enabled = true,
+				char = "│",
+				show_start = false,
+				show_end = false,
+				highlight = { "IblScope" },
+			},
 		},
 		config = function(_, opts)
+			local ibl = require("ibl")
 			local hooks = require("ibl.hooks")
 			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-			require("ibl").setup(opts)
+			ibl.setup(opts)
 		end,
 	},
 	{

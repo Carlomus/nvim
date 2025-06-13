@@ -7,7 +7,7 @@ file_ops.setup()
 local M = {}
 
 -- export on_attach & capabilities
-M.on_attach = function(_, bufnr)
+M.on_attach = function(client, bufnr)
 	local function opts(desc)
 		return { buffer = bufnr, desc = "LSP " .. desc }
 	end
@@ -34,6 +34,12 @@ M.on_attach = function(_, bufnr)
 		vim.notify(msg, vim.log.levels.INFO, { title = "Diagnostics" })
 	end, { desc = "Toggle diagnostics virtual text" })
 	-- map("n", "<leader>ra", require("nvchad.lsp.renamer"), opts("NvRenamer"))
+
+	-- attach navic if supported
+	local ok, navic = pcall(require, "nvim-navic")
+	if ok and client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
 end
 
 -- disable semanticTokens

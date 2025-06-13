@@ -31,7 +31,7 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 -- Duplicate line
-map("n", "<C-a>", [[:normal! mmggVG`m<CR>]], { desc = "Visually select entire file and return" })
+map("n", "<C-a>", [[:normal! ggVG$<CR>]], { desc = "Visually select entire file and return" })
 map("n", "<C-p>", "o<ESC>p", { desc = "paste on new line" })
 map("n", "<leader>o", '"_ddP', { desc = "Overwrite line with last yanked or deleted line" })
 map("n", "<leader>yaf", "v[{]}y", { desc = "Yank current fold" })
@@ -39,7 +39,7 @@ map("n", "<leader>yaf", "v[{]}y", { desc = "Yank current fold" })
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 
--- d goes to black holei
+-- d goes to black hole
 map({ "n", "v" }, "d", '"_d', { desc = "delete (black-hole)" })
 map({ "n", "v" }, "<leader>d", "d", { desc = "delete and yank (default)" })
 

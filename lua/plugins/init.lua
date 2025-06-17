@@ -62,4 +62,5 @@ return {
 			close_on_exit = true,
 		},
 	},
+	require("plugins.container"),
 }

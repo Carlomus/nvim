@@ -58,6 +58,12 @@ M = {
 			-- log_level = 'debug',
 		},
 	},
+	{
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
 	-- {
 	-- 	"chrisgrieser/nvim-origami",
 	-- 	event = "VeryLazy",
@@ -70,5 +76,4 @@ M = {
 	-- 	end,
 	-- },
 }
-
 return M

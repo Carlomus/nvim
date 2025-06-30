@@ -26,7 +26,6 @@ M = {
 			})
 		end,
 	},
-	-- { "SmiteshP/nvim-navic", event = "LspAttach", dependencies = { "neovim/nvim-lspconfig" } },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -38,7 +37,6 @@ M = {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		-- dependencies = { "SmiteshP/nvim-navic" },
 		event = "BufReadPost",
 		opts = {
 			indent = {
@@ -84,27 +82,7 @@ M = {
 		lazy = false,
 		priority = 1000,
 	},
-	-- {
-	-- 	"EdenEast/nightfox.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- },
-	-- {
-	-- 	"rose-pine/neovim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- },
-	{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
-	-- { "rebelot/kanagawa.nvim", lazy = false, priority = 1000 },
-	{ "nyoom-engineering/oxocarbon.nvim", lazy = false, priority = 1000 },
-	-- { "sainnhe/everforest", lazy = false, priority = 1000 },
-	-- { "shaunsingh/nord.nvim", lazy = false, priority = 1000 },
-	-- { "rmehri01/onenord.nvim", lazy = false, priority = 1000 },
-	-- { "navarasu/onedark.nvim", lazy = false, priority = 1000 },
-	-- { "Mofiqul/dracula.nvim", lazy = false, priority = 1000 },
 	{ "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
-	-- { "olimorris/onedarkpro.nvim", lazy = false, priority = 1000 },
-	-- { "ray-x/starry.nvim", lazy = false, priority = 1000 },
 }
 
 return M

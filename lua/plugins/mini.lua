@@ -1,0 +1,13 @@
+return {}
+-- return {
+--   { "echasnovski/mini.nvim", version = "*", config = function()
+--       require("mini.pairs").setup()
+--       require("mini.surround").setup()
+--       require("mini.comment").setup()
+--       require("mini.clue").setup()
+--       require("mini.indentscope").setup()
+--       require("mini.statusline").setup()
+--       -- …enable any other modules you want
+--     end
+--   },
+-- }

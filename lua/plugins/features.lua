@@ -1,5 +1,12 @@
 M = {
 	{
+		"nvim-tree/nvim-tree.lua",
+		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+		opts = function()
+			return require("config.nvimtree")
+		end,
+	},
+	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		cmd = { "ToggleTerm", "TermExec" },

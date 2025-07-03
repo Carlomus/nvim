@@ -1,12 +1,6 @@
 return {
 	"nvim-lua/plenary.nvim",
-	{
-		"nvim-tree/nvim-tree.lua",
-		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-		opts = function()
-			return require("config.nvimtree")
-		end,
-	},
+
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },

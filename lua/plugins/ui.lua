@@ -27,6 +27,7 @@ M = {
 		end,
 	},
 	{
+		-- Lualine breadcrumbs
 		"SmiteshP/nvim-navic",
 		config = function()
 			local config = require("config.navic")
@@ -47,7 +48,7 @@ M = {
 		event = "BufReadPost",
 		opts = {
 			indent = {
-				char = "¦", -- "┆",
+				char = "¦",
 				highlight = { "IblIndent" },
 			},
 			scope = {

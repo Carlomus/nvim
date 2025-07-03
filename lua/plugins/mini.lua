@@ -1,15 +1,15 @@
 local modules = {
-	"mini.ai",
-	"mini.align",
-	"mini.comment",
+	{ "mini.ai", nil },
+	{ "mini.align", nil },
+	{ "mini.comment", nil },
 	-- "mini.completion",
-	"mini.keymap",
+	{ "mini.keymap", nil },
 	-- "mini.move",
-	"mini.operators",
-	"mini.pairs",
+	{ "mini.operators", nil },
+	{ "mini.pairs", nil },
 	-- "mini.snippets",
-	"mini.splitjoin",
-	"mini.surround",
+	{ "mini.splitjoin", nil },
+	{ "mini.surround", nil },
 
 	-- -- ▶ General workflow
 	-- "mini.basics",
@@ -30,7 +30,7 @@ local modules = {
 
 	-- -- ▶ Appearance
 	-- "mini.animate",
-	-- "mini.base16",
+	{ "mini.base16", "config.mini.base16" },
 	-- "mini.colors",
 	-- "mini.cursorword",
 	-- "mini.hipatterns",
@@ -55,8 +55,15 @@ return {
 	version = false,
 	lazy = false,
 	config = function()
-		for _, m in ipairs(modules) do
-			require(m).setup()
+		for _, spec in ipairs(modules) do
+			local name, cfg = spec[1], spec[2]
+			local ok, plugin = pcall(require, name)
+			if not ok then
+				vim.notify("mini.nvim loader: cannot require '" .. name .. "'", vim.log.levels.WARN)
+			elseif plugin.setup then
+				local opts = cfg and require(cfg) or nil
+				plugin.setup(opts)
+			end
 		end
 	end,
 }

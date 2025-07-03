@@ -41,17 +41,17 @@ map(
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 	{ desc = "telescope find all files" }
 )
-map("n", "<leader>th", function()
-	require("telescope.builtin").colorscheme({
-		enable_preview = true,
-		layout_strategy = "horizontal",
-		layout_config = {
-			height = 0.20, -- 20 % tall
-			width = 0.30, -- 30 % wide
-			preview_width = 0, -- % of the picker width
-		},
-	})
-end, { desc = "Pick theme" })
+-- map("n", "<leader>th", function()
+-- 	require("telescope.builtin").colorscheme({
+-- 		enable_preview = true,
+-- 		layout_strategy = "horizontal",
+-- 		layout_config = {
+-- 			height = 0.20, -- 20 % tall
+-- 			width = 0.30, -- 30 % wide
+-- 			preview_width = 0, -- % of the picker width
+-- 		},
+-- 	})
+-- end, { desc = "Pick theme" })
 
 -- terminal
 map("t", "<A-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })

@@ -32,7 +32,7 @@ local modules = {
 	-- "mini.animate",
 	-- "mini.base16",
 	-- "mini.colors",
-	"mini.cursorword",
+	-- "mini.cursorword",
 	-- "mini.hipatterns",
 	-- "mini.hues",
 	-- "mini.icons",

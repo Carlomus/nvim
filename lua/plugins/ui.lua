@@ -27,8 +27,15 @@ M = {
 		end,
 	},
 	{
+		"SmiteshP/nvim-navic",
+		config = function()
+			local config = require("config.navic")
+			require("nvim-navic").setup(config)
+		end,
+	},
+	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
 		lazy = false,
 		config = function()
 			local config = require("config.lualine")

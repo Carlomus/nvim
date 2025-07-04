@@ -27,7 +27,3 @@ require("autocmds")
 require("mappings")
 require("servers")
 require("plug_mappings")
---
--- local theme = require("theme")
--- theme.autosave()
--- theme.load()

@@ -1,5 +1,3 @@
--- Alpha (dashboard) for neovim
-
 local options = {}
 
 -- Create button for initial keybind.
@@ -40,39 +38,34 @@ end
 local headers = require("others/headers")
 
 -- Sections for Alpha.
-
 local header = {
 	type = "text",
-	-- val = Headers[math.random(#Headers)],
 	val = headers[1],
 	opts = {
 		position = "center",
-		hl = "Whitespace",
-		-- wrap = "overflow";
+		hl = "Comment",
 	},
 }
 
 local footer = {
 	type = "text",
 	val = "Hello there.",
-	opts = { position = "center", hl = "Whitespace" },
+	opts = { position = "center", hl = "Comment" },
 }
 
 local buttons = {
 	type = "group",
 	val = {
-		button("e", "  New Buffer", "RainbowRed", ":tabnew<CR>"),
-		button("f", "  Find file", "RainbowYellow", ":Telescope find_files<CR>"),
-		button("h", "  Recently opened files", "RainbowBlue", ":Telescope oldfiles<CR>"),
-		button("l", "  Projects", "RainbowOrange", ":Telescope marks<CR>"),
-		--button("r", "  Frecency/MRU",          'RainbowCyan', ':Telescope oldfiles<CR>'),
+		button("e", "  New Buffer", "Normal", ":tabnew<CR>"),
+		button("f", "  Find file", "Normal", ":Telescope find_files<CR>"),
+		button("h", "  Recently opened files", "Normal", ":Telescope oldfiles<CR>"),
+		button("l", "  Projects", "Normal", ":Telescope marks<CR>"),
 		button(
 			"g",
 			"  Open Last Session",
 			"RainbowGreen",
 			":source ~/.config/nvim/session.vim<CR>"
 		),
-		--button("m", "  Word Finder",           'RainbowViolet', ':Telescope live_grep<CR>'),
 	},
 	opts = {
 		spacing = 1,
@@ -80,7 +73,6 @@ local buttons = {
 }
 
 -- Centering handler of ALPHA
-
 local ol = { -- occupied lines
 	icon = #header.val, -- CONST: number of lines that your header will occupy
 	message = #footer.val, -- CONST: because of padding at the bottom

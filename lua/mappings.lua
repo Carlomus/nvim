@@ -38,3 +38,6 @@ map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 -- d goes to black hole
 map({ "n", "v" }, "d", '"_d', { desc = "delete (black-hole)" })
 map({ "n", "v" }, "<leader>d", "d", { desc = "delete and yank (default)" })
+
+map("n", "o", "o<Esc>", { noremap = true, silent = true })
+map("n", "O", "O<Esc>", { noremap = true, silent = true })

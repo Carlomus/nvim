@@ -79,6 +79,12 @@ M = {
 			require("alpha").setup(opts)
 		end,
 	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+	},
+	{ "EdenEast/nightfox.nvim", lazy = false, priority = 1000 },
 }
 
 return M

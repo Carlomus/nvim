@@ -1,32 +1,27 @@
 -- lua/config/mini/base16.lua
 local helpers = require("others.helpers")
 
+-- Helper to hack and see live the colores
 local function hsl(h, s, l)
 	return h, s, l
 end
-
 local palette = {
-	-- Background shades
-	base00 = helpers.hsl_to_hex(hsl(220, 13, 18)), -- bg
-	base01 = helpers.hsl_to_hex(hsl(220, 13, 24)), -- bg_lighter
-	base02 = helpers.hsl_to_hex(hsl(220, 13, 30)), -- selection bg / subtle
-	base03 = helpers.hsl_to_hex(hsl(220, 13, 50)), -- comments / dim
-
-	-- Foreground shades
-	base04 = helpers.hsl_to_hex(hsl(220, 13, 70)), -- fg_dimmer
-	base05 = helpers.hsl_to_hex(hsl(220, 13, 85)), -- fg
-	base06 = helpers.hsl_to_hex(hsl(220, 13, 92)), -- fg_brighter
-	base07 = helpers.hsl_to_hex(hsl(220, 13, 98)), -- near white
-
-	-- Accents
-	base08 = helpers.hsl_to_hex(hsl(0, 70, 60)), -- errors
-	base09 = helpers.hsl_to_hex(hsl(30, 70, 60)), -- warnings
-	base0A = helpers.hsl_to_hex(hsl(45, 90, 60)), -- constants
-	base0B = helpers.hsl_to_hex(hsl(120, 60, 50)), -- success, strings
-	base0C = helpers.hsl_to_hex(hsl(180, 60, 50)), -- specials
-	base0D = helpers.hsl_to_hex(hsl(220, 70, 60)), -- keywords
-	base0E = helpers.hsl_to_hex(hsl(280, 60, 65)), -- functions
-	base0F = helpers.hsl_to_hex(hsl(330, 60, 60)), -- builtins
+	base00 = "#24283B",
+	base01 = "#16161E",
+	base02 = "#343A52",
+	base03 = "#444B6A",
+	base04 = "#787C99",
+	base05 = "#A9B1D6",
+	base06 = "#CBCCD1",
+	base07 = "#D5D6DB",
+	base08 = "#C0CAF5",
+	base09 = "#A9B1D6",
+	base0A = "#0DB9D7",
+	base0B = "#9ECE6A",
+	base0C = "#B4F9F8",
+	base0D = helpers.hsl_to_hex(hsl(220, 70, 70)),
+	base0E = "#BB9AF7",
+	base0F = "#F7768E",
 }
 
 return {

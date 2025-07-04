@@ -9,7 +9,7 @@ local modules = {
 	{ "mini.pairs", nil },
 	-- "mini.snippets",
 	{ "mini.splitjoin", nil },
-	{ "mini.surround", nil },
+	{ "mini.surround", "config.mini.surround" },
 
 	-- -- ▶ General workflow
 	-- "mini.basics",
@@ -30,7 +30,7 @@ local modules = {
 
 	-- -- ▶ Appearance
 	-- "mini.animate",
-	{ "mini.base16", "config.mini.base16" },
+	-- { "mini.base16", "config.mini.base16" },
 	-- "mini.colors",
 	-- "mini.cursorword",
 	{ "mini.hipatterns", "config.mini.hipatterns" },

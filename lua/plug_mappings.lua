@@ -3,12 +3,6 @@ local map = vim.keymap.set
 -- buffer navigation
 map("n", "<S-Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 map("n", "<C-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
-map(
-	"n",
-	"<C-v>",
-	"<cmd>vsplit<CR><cmd>BufferLineCyclePrev<CR>",
-	{ desc = "Move buffer to new vertical split" }
-)
 
 map({ "n", "x" }, "<leader>h", function()
 	require("conform").format({ lsp_fallback = true })
@@ -41,17 +35,17 @@ map(
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 	{ desc = "telescope find all files" }
 )
--- map("n", "<leader>th", function()
--- 	require("telescope.builtin").colorscheme({
--- 		enable_preview = true,
--- 		layout_strategy = "horizontal",
--- 		layout_config = {
--- 			height = 0.20, -- 20 % tall
--- 			width = 0.30, -- 30 % wide
--- 			preview_width = 0, -- % of the picker width
--- 		},
--- 	})
--- end, { desc = "Pick theme" })
+map("n", "<leader>th", function()
+	require("telescope.builtin").colorscheme({
+		enable_preview = true,
+		layout_strategy = "horizontal",
+		layout_config = {
+			height = 0.20, -- 20 % tall
+			width = 0.30, -- 30 % wide
+			preview_width = 0, -- % of the picker width
+		},
+	})
+end, { desc = "Pick theme" })
 
 -- terminal
 map("t", "<A-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })

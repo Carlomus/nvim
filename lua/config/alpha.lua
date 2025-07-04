@@ -105,5 +105,18 @@ if left_terminal_value >= 0 then
 		},
 	}
 end
-
+if not options.layout then
+	options = {
+		layout = {
+			{
+				type = "text",
+				val = " Welcome to Neovim",
+				opts = { position = "center", hl = "Comment" },
+			},
+		},
+		opts = {
+			margin = 5,
+		},
+	}
+end
 return options

@@ -41,3 +41,9 @@ map({ "n", "v" }, "<leader>d", "d", { desc = "delete and yank (default)" })
 
 map("n", "o", "o<Esc>", { noremap = true, silent = true })
 map("n", "O", "O<Esc>", { noremap = true, silent = true })
+
+-- Disable arrow keys in normal and insert mode
+map("n", "<Left>", "<Nop>")
+map("n", "<Right>", "<Nop>")
+map("n", "<Up>", "<Nop>")
+map("n", "<Down>", "<Nop>")

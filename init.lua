@@ -1,18 +1,3 @@
---  Spy on every change to 'foldlevel'
-vim.api.nvim_create_autocmd("OptionSet", {
-	pattern = "foldlevel",
-	callback = function()
-		local src = debug.getinfo(2, "S") -- caller of :set
-		vim.notify(
-			("foldlevel → %s   (%s:%d)"):format(
-				vim.v.option_new,
-				src.short_src or "?",
-				src.linedefined or 0
-			)
-		)
-	end,
-})
-
 if vim.loader then
 	vim.loader.enable()
 end
@@ -41,6 +26,7 @@ require("options")
 require("autocmds")
 require("mappings")
 require("servers")
+require("plug_mappings")
 
 local theme = require("theme")
 theme.autosave()

@@ -13,7 +13,6 @@ M = {
 			require("config.lspconfig").defaults()
 		end,
 	},
-	-- load luasnips + cmp related in insert mode only
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -41,6 +40,38 @@ M = {
 			return require("config.cmp")
 		end,
 	},
+	{
+		"antosha417/nvim-lsp-file-operations",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-tree.lua",
+		},
+		config = function()
+			require("lsp-file-operations").setup()
+		end,
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			local rt = require("rust-tools")
+			rt.setup({
+				server = {
+					on_attach = function(_, bufnr)
+						-- enable inlay hints for this buffer
+						rt.inlay_hints.enable()
+						-- workspace symbol snippet helpers
+						vim.keymap.set(
+							"n",
+							"<leader>rs",
+							rt.workspace_symbol_query,
+							{ buffer = bufnr }
+						)
+					end,
+				},
+			})
+		end,
+	},
 }
-
 return M

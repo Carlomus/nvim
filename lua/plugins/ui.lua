@@ -4,6 +4,10 @@ M = {
 		opts = function() end,
 	},
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "LspAttach",
+	},
+	{
 		"akinsho/bufferline.nvim",
 		version = "*",
 		event = { "BufNew", "BufEnter" },
@@ -26,10 +30,17 @@ M = {
 			})
 		end,
 	},
-	-- { "SmiteshP/nvim-navic", event = "LspAttach", dependencies = { "neovim/nvim-lspconfig" } },
+	{
+		-- Lualine breadcrumbs
+		"SmiteshP/nvim-navic",
+		config = function()
+			local config = require("config.navic")
+			require("nvim-navic").setup(config)
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
 		lazy = false,
 		config = function()
 			local config = require("config.lualine")
@@ -38,11 +49,10 @@ M = {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		-- dependencies = { "SmiteshP/nvim-navic" },
 		event = "BufReadPost",
 		opts = {
 			indent = {
-				char = "¦", -- "┆",
+				char = "¦",
 				highlight = { "IblIndent" },
 			},
 			scope = {
@@ -78,33 +88,7 @@ M = {
 		lazy = false,
 		priority = 1000,
 	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		lazy = false,
-		priority = 1000,
-	},
-	-- {
-	-- 	"EdenEast/nightfox.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- },
-	-- {
-	-- 	"rose-pine/neovim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- },
-	{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 1000 },
-	-- { "rebelot/kanagawa.nvim", lazy = false, priority = 1000 },
-	{ "nyoom-engineering/oxocarbon.nvim", lazy = false, priority = 1000 },
-	-- { "sainnhe/everforest", lazy = false, priority = 1000 },
-	-- { "shaunsingh/nord.nvim", lazy = false, priority = 1000 },
-	-- { "rmehri01/onenord.nvim", lazy = false, priority = 1000 },
-	-- { "navarasu/onedark.nvim", lazy = false, priority = 1000 },
-	-- { "Mofiqul/dracula.nvim", lazy = false, priority = 1000 },
-	{ "projekt0n/github-nvim-theme", lazy = false, priority = 1000 },
-	-- { "olimorris/onedarkpro.nvim", lazy = false, priority = 1000 },
-	-- { "ray-x/starry.nvim", lazy = false, priority = 1000 },
+	{ "EdenEast/nightfox.nvim", lazy = false, priority = 1000 },
 }
 
 return M

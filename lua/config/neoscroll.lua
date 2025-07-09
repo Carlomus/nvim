@@ -1,4 +1,4 @@
-neoscroll = require("neoscroll")
+local neoscroll = require("neoscroll")
 neoscroll.setup({
 	hide_cursor = true, -- Hide cursor while scrolling
 	stop_eof = false, -- Stop at <EOF> when scrolling downwards

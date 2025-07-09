@@ -49,3 +49,6 @@ end, { desc = "Pick theme" })
 
 -- terminal
 map("t", "<A-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+
+-- Toggle context
+map("n", "<leader>tc", "<cmd>TSContext toggle<CR>", { desc = "Toggle tree sitter context" })

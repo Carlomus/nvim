@@ -4,6 +4,10 @@ M = {
 		opts = function() end,
 	},
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "LspAttach",
+	},
+	{
 		"akinsho/bufferline.nvim",
 		version = "*",
 		event = { "BufNew", "BufEnter" },

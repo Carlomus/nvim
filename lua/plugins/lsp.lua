@@ -50,5 +50,28 @@ M = {
 			require("lsp-file-operations").setup()
 		end,
 	},
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			local rt = require("rust-tools")
+			rt.setup({
+				server = {
+					on_attach = function(_, bufnr)
+						-- enable inlay hints for this buffer
+						rt.inlay_hints.enable()
+						-- workspace symbol snippet helpers
+						vim.keymap.set(
+							"n",
+							"<leader>rs",
+							rt.workspace_symbol_query,
+							{ buffer = bufnr }
+						)
+					end,
+				},
+			})
+		end,
+	},
 }
 return M

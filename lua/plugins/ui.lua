@@ -6,6 +6,9 @@ M = {
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		event = "LspAttach",
+		config = function()
+			require("treesitter-context").setup(require("config.treectx"))
+		end,
 	},
 	{
 		"akinsho/bufferline.nvim",

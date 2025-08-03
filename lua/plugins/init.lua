@@ -5,4 +5,5 @@ return {
 	require("plugins.mini"),
 	require("plugins.qol"),
 	require("plugins.lsp"),
+	require("plugins.snacks"),
 }

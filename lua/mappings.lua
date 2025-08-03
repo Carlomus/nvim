@@ -28,7 +28,6 @@ map("n", "<A-k>", ":m .-2<CR>==", { desc = "line ⇡ (swap with above)" })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
-map("n", "<C-a>", [[:normal! ggVG$<CR>]], { desc = "Visually select entire file and return" })
 map("n", "<leader>o", '"_ddP', { desc = "Overwrite line with last yanked or deleted line" })
 map("n", "<leader>yaf", "v[{]}y", { desc = "Yank current fold" })
 

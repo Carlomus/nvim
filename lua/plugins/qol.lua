@@ -13,12 +13,12 @@ M = {
 			return require("config.conform")
 		end,
 	},
-	{
-		"lewis6991/gitsigns.nvim",
-		event = "BufReadPost",
-		opts = function()
-			return require("config.gitsigns")
-		end,
-	},
+	-- {
+	-- 	"lewis6991/gitsigns.nvim",
+	-- 	event = "BufReadPost",
+	-- 	opts = function()
+	-- 		return require("config.gitsigns")
+	-- 	end,
+	-- },
 }
 return M

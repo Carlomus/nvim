@@ -50,42 +50,42 @@ M = {
 			require("lualine").setup(config)
 		end,
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufReadPost",
-		opts = {
-			indent = {
-				char = "¦",
-				highlight = { "IblIndent" },
-			},
-			scope = {
-				enabled = true,
-				char = "│",
-				show_start = false,
-				show_end = false,
-				highlight = { "IblScope" },
-			},
-		},
-		config = function(_, opts)
-			local ibl = require("ibl")
-			local hooks = require("ibl.hooks")
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-			ibl.setup(opts)
-		end,
-	},
-	{
-		"goolord/alpha-nvim",
-		event = "VimEnter", -- load on startup
-		dependencies = "nvim-tree/nvim-web-devicons",
-		config = function()
-			-- get the table you just returned from config/alpha.lua
-			local ok, opts = pcall(require, "config.alpha")
-			if not ok or not opts then
-				opts = require("alpha.themes.dashboard").config
-			end
-			require("alpha").setup(opts)
-		end,
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	event = "BufReadPost",
+	-- 	opts = {
+	-- 		indent = {
+	-- 			char = "¦",
+	-- 			highlight = { "IblIndent" },
+	-- 		},
+	-- 		scope = {
+	-- 			enabled = true,
+	-- 			char = "│",
+	-- 			show_start = false,
+	-- 			show_end = false,
+	-- 			highlight = { "IblScope" },
+	-- 		},
+	-- 	},
+	-- 	config = function(_, opts)
+	-- 		local ibl = require("ibl")
+	-- 		local hooks = require("ibl.hooks")
+	-- 		hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+	-- 		ibl.setup(opts)
+	-- 	end,
+	-- },
+	-- {
+	-- 	"goolord/alpha-nvim",
+	-- 	event = "VimEnter", -- load on startup
+	-- 	dependencies = "nvim-tree/nvim-web-devicons",
+	-- 	config = function()
+	-- 		-- get the table you just returned from config/alpha.lua
+	-- 		local ok, opts = pcall(require, "config.alpha")
+	-- 		if not ok or not opts then
+	-- 			opts = require("alpha.themes.dashboard").config
+	-- 		end
+	-- 		require("alpha").setup(opts)
+	-- 	end,
+	-- },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,

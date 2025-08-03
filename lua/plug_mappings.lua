@@ -12,9 +12,6 @@ end, { desc = "general format file" })
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 
--- nvimtree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
@@ -35,6 +32,7 @@ map(
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 	{ desc = "telescope find all files" }
 )
+
 map("n", "<leader>th", function()
 	require("telescope.builtin").colorscheme({
 		enable_preview = true,
@@ -46,9 +44,6 @@ map("n", "<leader>th", function()
 		},
 	})
 end, { desc = "Pick theme" })
-
--- terminal
-map("t", "<A-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- Toggle context
 map("n", "<leader>tc", "<cmd>TSContext toggle<CR>", { desc = "Toggle tree sitter context" })

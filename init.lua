@@ -3,7 +3,6 @@ if vim.loader then
 end
 
 vim.g.mapleader = " "
-vim.g.python3_host_prog = vim.fn.exepath("python3")
 
 require("filetypes")
 
@@ -29,5 +28,4 @@ require("servers")
 require("plug_mappings")
 
 local theme = require("theme")
-theme.autosave()
 theme.load()

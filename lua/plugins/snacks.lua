@@ -201,9 +201,10 @@ return {
 				desc = "Undo History",
 			},
 			{
-				"<leader>uC",
+				"<leader>th",
 				function()
 					Snacks.picker.colorschemes()
+					require("theme").autosave()
 				end,
 				desc = "Colorschemes",
 			},

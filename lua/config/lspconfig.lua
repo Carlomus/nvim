@@ -5,22 +5,6 @@ local M = {}
 
 -- export on_attach & capabilities
 M.on_attach = function(client, bufnr)
-	local function opts(desc)
-		return { buffer = bufnr, desc = "LSP " .. desc }
-	end
-	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
-	map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
-	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-	map("n", "gr", vim.lsp.buf.references, opts("List references"))
-	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
-	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
-
-	map("n", "<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, opts("List workspace folders"))
-
-	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code Action"))
-	map("n", "<leader>gt", vim.lsp.buf.type_definition, opts("Go to type definition"))
 	map("n", "<leader>td", function()
 		virtual_text_enabled = not virtual_text_enabled
 		vim.diagnostic.config({
@@ -33,7 +17,6 @@ M.on_attach = function(client, bufnr)
 		local msg = virtual_text_enabled and "Virtual text ON" or "Virtual text OFF"
 		vim.notify(msg, vim.log.levels.INFO, { title = "Diagnostics" })
 	end, { desc = "Toggle diagnostics virtual text" })
-	-- map("n", "<leader>ra", require("nvchad.lsp.renamer"), opts("NvRenamer"))
 
 	-- attach navic if supported
 	local ok, navic = pcall(require, "nvim-navic")

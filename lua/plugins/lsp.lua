@@ -2,9 +2,17 @@ M = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-		opts = function()
-			return require("config.mason")
-		end,
+		opts = {
+			PATH = "skip",
+			ui = {
+				icons = {
+					package_pending = " ",
+					package_installed = " ",
+					package_uninstalled = " ",
+				},
+			},
+			max_concurrent_installers = 10,
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -38,16 +46,6 @@ M = {
 		},
 		opts = function()
 			return require("config.cmp")
-		end,
-	},
-	{
-		"antosha417/nvim-lsp-file-operations",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-tree.lua",
-		},
-		config = function()
-			require("lsp-file-operations").setup()
 		end,
 	},
 	{

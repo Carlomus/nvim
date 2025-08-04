@@ -7,7 +7,11 @@ M = {
 		"nvim-treesitter/nvim-treesitter-context",
 		event = "LspAttach",
 		config = function()
-			require("treesitter-context").setup(require("config.treectx"))
+			require("treesitter-context").setup({
+				enable = true,
+				line_numbers = true,
+				max_lines = 5,
+			})
 		end,
 	},
 	{
@@ -34,7 +38,7 @@ M = {
 		end,
 	},
 	{
-		-- Lualine breadcrumbs
+		-- lualine breadcrumbs
 		"SmiteshP/nvim-navic",
 		config = function()
 			local config = require("config.navic")
@@ -50,48 +54,34 @@ M = {
 			require("lualine").setup(config)
 		end,
 	},
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	event = "BufReadPost",
-	-- 	opts = {
-	-- 		indent = {
-	-- 			char = "¦",
-	-- 			highlight = { "IblIndent" },
-	-- 		},
-	-- 		scope = {
-	-- 			enabled = true,
-	-- 			char = "│",
-	-- 			show_start = false,
-	-- 			show_end = false,
-	-- 			highlight = { "IblScope" },
-	-- 		},
-	-- 	},
-	-- 	config = function(_, opts)
-	-- 		local ibl = require("ibl")
-	-- 		local hooks = require("ibl.hooks")
-	-- 		hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-	-- 		ibl.setup(opts)
-	-- 	end,
-	-- },
-	-- {
-	-- 	"goolord/alpha-nvim",
-	-- 	event = "VimEnter", -- load on startup
-	-- 	dependencies = "nvim-tree/nvim-web-devicons",
-	-- 	config = function()
-	-- 		-- get the table you just returned from config/alpha.lua
-	-- 		local ok, opts = pcall(require, "config.alpha")
-	-- 		if not ok or not opts then
-	-- 			opts = require("alpha.themes.dashboard").config
-	-- 		end
-	-- 		require("alpha").setup(opts)
-	-- 	end,
-	-- },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 	},
-	{ "EdenEast/nightfox.nvim", lazy = false, priority = 1000 },
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nightfox").setup({
+				options = {
+					styles = { -- Style to be applied to different syntax groups
+						comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+						conditionals = "bold",
+						constants = "bold",
+						functions = "NONE",
+						keywords = "bold",
+						numbers = "NONE",
+						operators = "NONE",
+						strings = "NONE",
+						types = "NONE",
+						variables = "NONE",
+					},
+				},
+			})
+		end,
+	},
 }
 
 return M

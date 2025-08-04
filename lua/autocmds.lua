@@ -74,10 +74,3 @@ autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = true, silent = true })
 	end,
 })
-
---  Start in insert mode automatically for terminal buffers
-autocmd("TermOpen", {
-	group = augroup("TermInsert", { clear = true }),
-	pattern = "*",
-	command = "startinsert",
-})

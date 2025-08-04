@@ -1,9 +1,6 @@
 local virtual_text_enabled = false
 local map = vim.keymap.set
 
-local file_ops = require("lsp-file-operations")
-file_ops.setup()
-
 local M = {}
 
 -- export on_attach & capabilities
@@ -71,8 +68,6 @@ M.capabilities.textDocument.completion.completionItem = {
 		},
 	},
 }
-
-M.capabilities = vim.tbl_deep_extend("force", M.capabilities, file_ops.default_capabilities())
 
 M.defaults = function()
 	vim.api.nvim_create_autocmd("LspAttach", {

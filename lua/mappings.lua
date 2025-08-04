@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("n", "<leader>q", ":bd<CR>", { desc = "Delete buffer" })
 
@@ -20,26 +19,25 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 
 map("n", "<leader>tn", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>tr", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
-map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
 -- move lines and blocks
-map("n", "<A-j>", ":m .+1<CR>==", { desc = "line ⇣ (swap with below)" })
-map("n", "<A-k>", ":m .-2<CR>==", { desc = "line ⇡ (swap with above)" })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
+map("n", "<A-j>", ":m .+1<CR>==", { desc = "line ⇣" })
+map("n", "<A-k>", ":m .-2<CR>==", { desc = "line ⇡" })
+map("x", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
+map("x", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
 map("n", "<leader>o", '"_ddP', { desc = "Overwrite line with last yanked or deleted line" })
-map("n", "<leader>yaf", "v[{]}y", { desc = "Yank current fold" })
 
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 
--- d goes to black hole
-map({ "n", "v" }, "d", '"_d', { desc = "delete (black-hole)" })
-map({ "n", "v" }, "<leader>d", "d", { desc = "delete and yank (default)" })
-
+-- O and o do not auto go into insert mode
 map("n", "o", "o<Esc>", { noremap = true, silent = true })
 map("n", "O", "O<Esc>", { noremap = true, silent = true })
+
+map({ "n", "x" }, "<leader>y", '"+y', { desc = "copy to system clipboard" })
+map("n", "<leader>yy", '"+yy', { desc = "yank line → clipboard" })
+map({ "n", "x" }, "<leader>p", '"+p', { desc = "put from system clipboard" })
 
 -- Disable arrow keys in normal and insert mode
 map("n", "<Left>", "<Nop>")

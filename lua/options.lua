@@ -1,19 +1,22 @@
 local opt = vim.opt
 local o = vim.o
-local g = vim.g
 
 -------------------------------------- options ------------------------------------------
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+o.foldlevel = 99
+o.foldlevelstart = 99
+opt.foldlevel = 99
+opt.foldlevelstart = 99
 
 o.laststatus = 3
-vim.o.showtabline = 1
+o.showtabline = 2
 o.showmode = false
-vim.opt.scrolloff = 12
+opt.scrolloff = 12
 
-o.clipboard = "unnamedplus"
+-- Highlight the number/line cursor is on
 o.cursorline = true
-o.cursorlineopt = "number"
+o.cursorlineopt = "number,line"
 
 -- Indenting
 o.expandtab = true
@@ -22,7 +25,7 @@ o.smartindent = true
 o.tabstop = 4
 o.softtabstop = 4
 
-vim.o.winbar = " "
+o.winbar = " "
 opt.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true
@@ -41,22 +44,10 @@ o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
 
+-- get rid of swapfiles, they tend to be annoying
+o.swapfile = false
 -- interval for writing swap file to disk, also used by gitsigns
-o.updatetime = 250
-
--- go to previous/next line with h,l,left arrow and right arrow
--- when cursor reaches end/beginning of line
-opt.whichwrap:append("<>[]hl")
-
--- disable some default providers
-g.loaded_node_provider = 0
-g.loaded_perl_provider = 0
-g.loaded_ruby_provider = 0
-
-o.foldlevel = 99
-o.foldlevelstart = 99
-opt.foldlevel = 99
-opt.foldlevelstart = 99
+-- o.updatetime = 250
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0

@@ -6,8 +6,6 @@ opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.foldlevel = 99
 o.foldlevelstart = 99
-opt.foldlevel = 99
-opt.foldlevelstart = 99
 
 o.laststatus = 3
 o.showtabline = 2

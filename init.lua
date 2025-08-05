@@ -24,7 +24,6 @@ require("lazy").setup({
 require("options")
 require("autocmds")
 require("mappings")
-require("servers")
 require("plug_mappings")
 
 local theme = require("theme")

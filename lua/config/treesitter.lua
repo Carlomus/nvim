@@ -4,5 +4,5 @@ return {
 		enable = true,
 		use_languagetree = true,
 	},
-	indent = { enable = false },
+	indent = { enable = true, disable = { "yaml" } },
 }

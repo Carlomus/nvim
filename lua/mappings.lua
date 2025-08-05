@@ -3,8 +3,8 @@ local map = vim.keymap.set
 map("i", "jk", "<ESC>")
 map("n", "<leader>q", ":bd<CR>", { desc = "Delete buffer" })
 
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "move end of line" })
+-- map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+-- map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
@@ -43,4 +43,4 @@ map("n", "<Right>", "<Nop>")
 map("n", "<Up>", "<Nop>")
 map("n", "<Down>", "<Nop>")
 
-map({ "n", "x" }, "gy", "[[:%y+<CR>]]", { desc = "yank file to system clipboard", silent = true })
+map({ "n", "x" }, "gy", [[:%y+<CR>]], { desc = "yank file to system clipboard", silent = true })

@@ -66,8 +66,10 @@ M = {
 		config = function()
 			require("nightfox").setup({
 				options = {
-					styles = { -- Style to be applied to different syntax groups
-						comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+					styles = {
+						-- Style to be applied to different syntax groups
+						-- Value is any valid attr-list value `:help attr-list`
+						comments = "italic",
 						conditionals = "bold",
 						constants = "bold",
 						functions = "NONE",

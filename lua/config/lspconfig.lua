@@ -59,22 +59,8 @@ M.defaults = function()
 			M.on_attach(client, args.buf)
 		end,
 	})
-	local lua_lsp_settings = {
-		Lua = {
-			workspace = {
-				library = {
-					vim.api.nvim_get_runtime_file("", true),
-					-- vim.fn.expand("$VIMRUNTIME/lua"),
-					-- vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-					-- "${3rd}/luv/library",
-				},
-			},
-			telemetry = { enable = false },
-		},
-	}
-
 	local lspconfig = require("lspconfig")
-	local servers = require("servers")
+	local servers = require("others.servers")
 
 	for _, server in ipairs(servers) do
 		lspconfig[server].setup({
@@ -111,6 +97,7 @@ M.defaults = function()
 			Lua = {
 				workspace = {
 					library = {
+						vim.api.nvim_get_runtime_file("", true),
 						vim.fn.expand("$VIMRUNTIME/lua"),
 						vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
 					},
@@ -119,6 +106,7 @@ M.defaults = function()
 				diagnostics = {
 					globals = { "vim" },
 				},
+				telemetry = { enable = false },
 			},
 		},
 	})

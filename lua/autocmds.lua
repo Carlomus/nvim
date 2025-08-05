@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local opt = vim.opt
 local o = vim.o
 
 -- Start with blocks of code opened up
@@ -15,8 +14,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
 			o.foldlevel = 99
 			o.foldlevelstart = 99
-			opt.foldlevel = 99
-			opt.foldlevelstart = 99
 		end
 	end,
 })

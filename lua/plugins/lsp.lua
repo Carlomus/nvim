@@ -1,4 +1,4 @@
-M = {
+local M = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
@@ -26,7 +26,6 @@ M = {
 				},
 				config = function(_, opts)
 					require("luasnip").setup(opts)
-					require("luasnip.loaders.from_vscode").lazy_load()
 				end,
 			},
 
@@ -37,7 +36,7 @@ M = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 		},
-		opts = function()
+		config = function()
 			return require("config.cmp")
 		end,
 	},

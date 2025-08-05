@@ -6,8 +6,8 @@ M = {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = function()
-			return require("config.lspconfig").defaults()
+		config = function()
+			require("config.lspconfig").defaults()
 		end,
 	},
 	{

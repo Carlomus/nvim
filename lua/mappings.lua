@@ -26,8 +26,6 @@ map("n", "<A-k>", ":m .-2<CR>==", { desc = "line ⇡" })
 map("x", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "block ⇣" })
 map("x", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "block ⇡" })
 
-map("n", "<leader>o", '"_ddP', { desc = "Overwrite line with last yanked or deleted line" })
-
 -- Toggle spell check
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 
@@ -44,3 +42,5 @@ map("n", "<Left>", "<Nop>")
 map("n", "<Right>", "<Nop>")
 map("n", "<Up>", "<Nop>")
 map("n", "<Down>", "<Nop>")
+
+map({ "n", "x" }, "gy", "[[:%y+<CR>]]", { desc = "yank file to system clipboard", silent = true })

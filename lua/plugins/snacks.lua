@@ -113,13 +113,13 @@ return {
 			-- 	end,
 			-- 	desc = "Git Stash",
 			-- },
-			-- {
-			-- 	"<leader>gd",
-			-- 	function()
-			-- 		Snacks.picker.git_diff()
-			-- 	end,
-			-- 	desc = "Git Diff (Hunks)",
-			-- },
+			{
+				"<leader>gd",
+				function()
+					Snacks.picker.git_diff()
+				end,
+				desc = "Git Diff (Hunks)",
+			},
 			-- {
 			-- 	"<leader>gf",
 			-- 	function()

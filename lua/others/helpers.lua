@@ -1,10 +1,6 @@
 local function is_mac()
 	local sysname = vim.loop.os_uname().sysname
-	if sysname == "Darwin" then
-		return true
-	else
-		return false
-	end
+	return sysname == "Darwin"
 end
 
 local function rgba_to_hex(r, g, b)

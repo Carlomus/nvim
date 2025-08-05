@@ -2,23 +2,12 @@ M = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-		opts = {
-			PATH = "skip",
-			ui = {
-				icons = {
-					package_pending = " ",
-					package_installed = " ",
-					package_uninstalled = " ",
-				},
-			},
-			max_concurrent_installers = 10,
-		},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("config.lspconfig").defaults()
+		opts = function()
+			return require("config.lspconfig").defaults()
 		end,
 	},
 	{
@@ -29,10 +18,14 @@ M = {
 				-- snippet plugin
 				"L3MON4D3/LuaSnip",
 				dependencies = "rafamadriz/friendly-snippets",
-				opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+				opts = {
+					history = true,
+					update_events = "TextChanged,TextChangedI",
+					delete_check_events = "TextChanged,InsertLeave",
+					region_check_events = "CursorHold,InsertEnter",
+				},
 				config = function(_, opts)
-					local ls = require("luasnip")
-					ls.config.set_config(opts)
+					require("luasnip").setup(opts)
 					require("luasnip.loaders.from_vscode").lazy_load()
 				end,
 			},
@@ -46,29 +39,6 @@ M = {
 		},
 		opts = function()
 			return require("config.cmp")
-		end,
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		ft = "rust",
-		dependencies = { "neovim/nvim-lspconfig" },
-		config = function()
-			local rt = require("rust-tools")
-			rt.setup({
-				server = {
-					on_attach = function(_, bufnr)
-						-- enable inlay hints for this buffer
-						rt.inlay_hints.enable()
-						-- workspace symbol snippet helpers
-						vim.keymap.set(
-							"n",
-							"<leader>rs",
-							rt.workspace_symbol_query,
-							{ buffer = bufnr }
-						)
-					end,
-				},
-			})
 		end,
 	},
 }

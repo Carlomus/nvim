@@ -47,7 +47,7 @@ o.undofile = true
 -- get rid of swapfiles, they tend to be annoying
 o.swapfile = false
 -- interval for writing swap file to disk, also used by gitsigns
--- o.updatetime = 250
+o.updatetime = 250
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0

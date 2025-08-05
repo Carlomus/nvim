@@ -25,12 +25,12 @@ M.on_attach = function(client, bufnr)
 	end
 end
 
--- disable semanticTokens
-M.on_init = function(client, _)
-	if client.supports_method("textDocument/semanticTokens") then
-		client.server_capabilities.semanticTokensProvider = nil
-	end
-end
+-- -- disable semanticTokens
+-- M.on_init = function(client, _)
+-- 	if client.supports_method("textDocument/semanticTokens") then
+-- 		client.server_capabilities.semanticTokensProvider = nil
+-- 	end
+-- end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -63,11 +63,13 @@ M.defaults = function()
 		Lua = {
 			workspace = {
 				library = {
-					vim.fn.expand("$VIMRUNTIME/lua"),
-					vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-					"${3rd}/luv/library",
+					vim.api.nvim_get_runtime_file("", true),
+					-- vim.fn.expand("$VIMRUNTIME/lua"),
+					-- vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+					-- "${3rd}/luv/library",
 				},
 			},
+			telemetry = { enable = false },
 		},
 	}
 
@@ -78,14 +80,14 @@ M.defaults = function()
 		lspconfig[server].setup({
 			on_attach = M.on_attach,
 			capabilities = M.capabilities,
-			on_init = M.on_init,
+			-- on_init = M.on_init,
 		})
 	end
 
 	lspconfig.pyright.setup({
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
-		on_init = M.on_init,
+		-- on_init = M.on_init,
 		root_dir = function(fname)
 			local util = require("lspconfig.util")
 			-- Prioritize nearest pyrightconfig.json, then fallback to git
@@ -104,7 +106,7 @@ M.defaults = function()
 	-- Lua-specific LSP setup with settings
 	lspconfig.lua_ls.setup({
 		capabilities = M.capabilities,
-		on_init = M.on_init,
+		-- on_init = M.on_init,
 		settings = {
 			Lua = {
 				workspace = {

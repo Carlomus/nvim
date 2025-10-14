@@ -1,0 +1,18 @@
+M = {}
+
+-- ---------- Python percent blocks (# %%) ----------
+function M.is_py_cell_start(line)
+	return line:match("^%s*#%s*%%%s*") ~= nil
+end
+
+-- TODO Ensure that non - python blocs that happen to start with
+-- # %% foobar are not treated as python code
+function M.py_cell_type(line)
+	local tag = line:match("%[([^%]]+)%]") -- catches [markdown], [MD], etc.
+	if tag and tag:lower():find("markdown") then
+		return "markdown"
+	end
+	return "python"
+end
+
+return M

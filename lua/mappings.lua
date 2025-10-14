@@ -33,9 +33,15 @@ map("n", "<leader>ts", ":set spell!<CR>", { desc = "toggle spell" })
 map("n", "o", "o<Esc>", { noremap = true, silent = true })
 map("n", "O", "O<Esc>", { noremap = true, silent = true })
 
-map({ "n", "x" }, "<leader>y", '"+y', { desc = "copy to system clipboard" })
-map("n", "<leader>yy", '"+yy', { desc = "yank line → clipboard" })
-map({ "n", "x" }, "<leader>p", '"+p', { desc = "put from system clipboard" })
+-- Make <leader>y a "use system clipboard" prefix
+map(
+	{ "n", "o" },
+	"<leader>y",
+	'"+',
+	{ remap = true, silent = true, desc = "system clipboard prefix" }
+)
+map("x", "<leader>y", '"+y', { silent = true, desc = "yank selection → system clipboard" })
+map("n", "<leader>Y", '"+Y', { silent = true, desc = "Yank to EOL → system clipboard" })
 
 -- Disable arrow keys in normal and insert mode
 map("n", "<Left>", "<Nop>")

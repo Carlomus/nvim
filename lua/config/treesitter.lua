@@ -1,5 +1,17 @@
 return {
-	ensure_installed = { "lua", "luadoc", "printf", "vim", "vimdoc", "python", "rust", "c", "cpp" },
+	ensure_installed = {
+		"lua",
+		"luadoc",
+		"printf",
+		"vim",
+		"vimdoc",
+		"python",
+		"rust",
+		"c",
+		"cpp",
+		"markdown",
+		"markdown_inline",
+	},
 	highlight = {
 		enable = true,
 		use_languagetree = true,

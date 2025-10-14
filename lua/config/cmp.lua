@@ -3,8 +3,12 @@ local luasnip = require("luasnip")
 
 local options = {
 	completion = { completeopt = "menu,menuone", ghost_text = { enabled = true } },
-
+	history = true,
+	update_events = "TextChanged,TextChangedI",
+	delete_check_events = "TextChanged,InsertLeave",
+	region_check_events = "CursorHold,InsertEnter",
 	window = {
+
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
@@ -22,7 +26,7 @@ local options = {
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({
+		["<Tab>"] = cmp.mapping.confirm({
 			select = true,
 		}),
 

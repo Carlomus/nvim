@@ -18,14 +18,11 @@ local M = {
 				-- snippet plugin
 				"L3MON4D3/LuaSnip",
 				dependencies = "rafamadriz/friendly-snippets",
-				opts = {
-					history = true,
-					update_events = "TextChanged,TextChangedI",
-					delete_check_events = "TextChanged,InsertLeave",
-					region_check_events = "CursorHold,InsertEnter",
-				},
+				opts = function()
+					return require("config.cmp")
+				end,
 				config = function(_, opts)
-					require("luasnip").setup(opts)
+					require("cmp").setup(opts)
 				end,
 			},
 
@@ -39,6 +36,13 @@ local M = {
 		config = function()
 			return require("config.cmp")
 		end,
+	},
+	{
+		"3rd/image.nvim",
+		build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+		opts = {
+			processor = "magick_cli",
+		},
 	},
 }
 return M

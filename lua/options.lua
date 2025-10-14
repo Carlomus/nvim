@@ -47,6 +47,9 @@ o.swapfile = false
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
 
+-- line length Highlight
+o.colorcolumn = "88"
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 local sep = is_windows and "\\" or "/"

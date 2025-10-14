@@ -21,6 +21,8 @@ require("lazy").setup({
 	{ import = "plugins" },
 }, lazy_config)
 
+require("mercury.mercury").setup({})
+
 require("options")
 require("autocmds")
 require("mappings")
@@ -28,3 +30,5 @@ require("plug_mappings")
 
 local theme = require("theme")
 theme.load()
+
+-- require("ipynb_plugin.ipyn_lens").setup({})

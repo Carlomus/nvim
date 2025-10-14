@@ -4,17 +4,6 @@ M = {
 		opts = function() end,
 	},
 	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "LspAttach",
-		config = function()
-			require("treesitter-context").setup({
-				enable = true,
-				line_numbers = true,
-				max_lines = 5,
-			})
-		end,
-	},
-	{
 		"akinsho/bufferline.nvim",
 		version = "*",
 		event = { "BufNew", "BufEnter" },

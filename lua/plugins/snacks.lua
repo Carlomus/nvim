@@ -41,13 +41,13 @@ return {
 				end,
 				desc = "Command History",
 			},
-			-- {
-			-- 	"<leader>e",
-			-- 	function()
-			-- 		Snacks.explorer()
-			-- 	end,
-			-- 	desc = "File Explorer",
-			-- },
+			{
+				"<leader>e",
+				function()
+					Snacks.explorer()
+				end,
+				desc = "File Explorer",
+			},
 			-- find
 			{
 				"<leader>fb",
@@ -128,14 +128,14 @@ return {
 			-- 	desc = "Git Log File",
 			-- },
 			-- Grep
-			{
-				"<leader>sw",
-				function()
-					Snacks.picker.grep_word()
-				end,
-				desc = "Visual selection or word",
-				mode = { "n", "x" },
-			},
+			-- {
+			-- 	"<leader>sw",
+			-- 	function()
+			-- 		Snacks.picker.grep_word()
+			-- 	end,
+			-- 	desc = "Visual selection or word",
+			-- 	mode = { "n", "x" },
+			-- },
 			-- search
 			{
 				'<leader>s"',
@@ -281,22 +281,22 @@ return {
 				end,
 				desc = "Toggle Terminal",
 			},
-			{
-				"]]",
-				function()
-					Snacks.words.jump(vim.v.count1)
-				end,
-				desc = "Next Reference",
-				mode = { "n", "t" },
-			},
-			{
-				"[[",
-				function()
-					Snacks.words.jump(-vim.v.count1)
-				end,
-				desc = "Prev Reference",
-				mode = { "n", "t" },
-			},
+			-- {
+			-- 	"]]",
+			-- 	function()
+			-- 		Snacks.words.jump(vim.v.count1)
+			-- 	end,
+			-- 	desc = "Next Reference",
+			-- 	mode = { "n", "t" },
+			-- },
+			-- {
+			-- 	"[[",
+			-- 	function()
+			-- 		Snacks.words.jump(-vim.v.count1)
+			-- 	end,
+			-- 	desc = "Prev Reference",
+			-- 	mode = { "n", "t" },
+			-- },
 		},
 		init = function()
 			vim.api.nvim_create_autocmd("User", {

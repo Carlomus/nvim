@@ -2,10 +2,16 @@ local M = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+		config = function()
+			require("mason").setup()
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
 		config = function()
 			require("config.lspconfig").defaults()
 		end,
@@ -18,14 +24,7 @@ local M = {
 				-- snippet plugin
 				"L3MON4D3/LuaSnip",
 				dependencies = "rafamadriz/friendly-snippets",
-				opts = function()
-					return require("config.cmp")
-				end,
-				config = function(_, opts)
-					require("cmp").setup(opts)
-				end,
 			},
-
 			-- cmp sources plugins
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lua",
@@ -33,16 +32,12 @@ local M = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 		},
-		config = function()
+		opts = function()
 			return require("config.cmp")
 		end,
-	},
-	{
-		"3rd/image.nvim",
-		build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-		opts = {
-			processor = "magick_cli",
-		},
+		config = function(_, opts)
+			require("cmp").setup(opts)
+		end,
 	},
 }
 return M

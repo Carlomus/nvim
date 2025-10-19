@@ -44,10 +44,10 @@ end, { desc = "Install every LSP/tool in the all_packages list with Mason" })
 
 -- 2) Which “server names” LSPConfig actually needs to call .setup() on:
 --    These must match lspconfig’s `:help lspconfig-servers` entries.
+-- "lua_ls", --Handled separately
+-- "pyright", -- handled separately
 local lspconfig_servers = {
-	-- "lua_ls", --Handled separately
 	"html",
-	-- "pyright", -- handled separately
 	"rust_analyzer",
 	"clangd",
 	"taplo",

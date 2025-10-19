@@ -50,6 +50,9 @@ o.updatetime = 250
 -- line length Highlight
 o.colorcolumn = "88"
 
+-- Don't continue comments
+vim.opt.formatoptions:remove({ "c", "r", "o" })
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 local sep = is_windows and "\\" or "/"

@@ -25,62 +25,59 @@ M.on_attach = function(client, bufnr)
 	end
 end
 
--- -- disable semanticTokens
--- M.on_init = function(client, _)
--- 	if client.supports_method("textDocument/semanticTokens") then
--- 		client.server_capabilities.semanticTokensProvider = nil
--- 	end
--- end
+-- M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
-
-M.capabilities.textDocument.completion.completionItem = {
-	documentationFormat = { "markdown", "plaintext" },
-	snippetSupport = true,
-	preselectSupport = true,
-	insertReplaceSupport = true,
-	labelDetailsSupport = true,
-	deprecatedSupport = true,
-	commitCharactersSupport = true,
-	tagSupport = { valueSet = { 1 } },
-	resolveSupport = {
-		properties = {
-			"documentation",
-			"detail",
-			"additionalTextEdits",
-		},
-	},
-}
+-- M.capabilities.textDocument.completion.completionItem = {
+-- 	documentationFormat = { "markdown", "plaintext" },
+-- 	snippetSupport = true,
+-- 	preselectSupport = true,
+-- 	insertReplaceSupport = true,
+-- 	labelDetailsSupport = true,
+-- 	deprecatedSupport = true,
+-- 	commitCharactersSupport = true,
+-- 	tagSupport = { valueSet = { 1 } },
+-- 	resolveSupport = {
+-- 		properties = {
+-- 			"documentation",
+-- 			"detail",
+-- 			"additionalTextEdits",
+-- 		},
+-- 	},
+-- }
 
 M.defaults = function()
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
 			M.on_attach(client, args.buf)
 		end,
 	})
-	local lspconfig = require("lspconfig")
+
 	local servers = require("others.servers")
 
 	for _, server in ipairs(servers) do
-		lspconfig[server].setup({
+		vim.lsp.config(server, {
 			on_attach = M.on_attach,
-			capabilities = M.capabilities,
-			-- on_init = M.on_init,
+			capabilities = capabilities,
 		})
+		vim.lsp.enable(server)
 	end
 
-	lspconfig.pyright.setup({
+	vim.lsp.config("pyright", {
 		on_attach = M.on_attach,
-		capabilities = M.capabilities,
+		capabilities = capabilities,
+		root_markers = {
+			-- "pyproject.toml",
+			-- "setup.py",
+			-- "setup.cfg",
+			-- "requirements.txt",
+			-- "Pipfile",
+			-- "pyrightconfig.json",
+			".git",
+		},
 		-- on_init = M.on_init,
-		root_dir = function(fname)
-			local util = require("lspconfig.util")
-			-- Prioritize nearest pyrightconfig.json, then fallback to git
-			return util.root_pattern("pyrightconfig.json", "pyproject.toml")(fname)
-				or util.find_git_ancestor(fname)
-				or vim.fn.getcwd()
-		end,
 		settings = {
 			python = {
 				analysis = {
@@ -89,9 +86,11 @@ M.defaults = function()
 			},
 		},
 	})
+	vim.lsp.enable("pyright")
+
 	-- Lua-specific LSP setup with settings
-	lspconfig.lua_ls.setup({
-		capabilities = M.capabilities,
+	vim.lsp.config("lua_ls", {
+		capabilities = capabilities,
 		-- on_init = M.on_init,
 		settings = {
 			Lua = {
@@ -110,6 +109,7 @@ M.defaults = function()
 			},
 		},
 	})
+	vim.lsp.enable("lua_ls")
 end
 
 return M

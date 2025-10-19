@@ -8,7 +8,7 @@ local modules = {
 	{ "mini.hipatterns", "config.mini.hipatterns" },
 	-- { "mini.git", nil },
 	{ "mini.diff", "config.mini.diff" },
-	{ "mini.sessions", "config.mini.sessions" },
+	-- { "mini.sessions", "config.mini.sessions" },
 	-- { "mini.completion", nil},
 	-- { "mini.snippets", nil},
 }

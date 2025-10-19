@@ -6,17 +6,17 @@ return {
 		---@type snacks.Config
 		opts = {
 			dashboard = require("config.snacks.dashboard"),
-			explorer = { enabled = true },
-			indent = { enabled = true, animate = {
-				enabled = false,
-			} },
+			explorer = { enabled = false },
+			dim = { enabled = true, animate = { enabled = false } },
+			indent = { enabled = true, animate = { enabled = false } },
 			input = { enabled = true },
 			picker = { enabled = true },
 			scope = { enabled = true },
 			scroll = { enabled = true },
 			scratch = { enabled = true },
-			rename = { enabled = true },
+			rename = { enabled = false },
 			bufdelete = { enabled = true },
+			zen = require("config.snacks.zen"),
 		},
 		keys = {
 			-- Top Pickers & Explorer
@@ -40,13 +40,6 @@ return {
 					Snacks.picker.command_history()
 				end,
 				desc = "Command History",
-			},
-			{
-				"<leader>e",
-				function()
-					Snacks.explorer()
-				end,
-				desc = "File Explorer",
 			},
 			-- find
 			{
@@ -77,42 +70,6 @@ return {
 				end,
 				desc = "Recent",
 			},
-			-- -- git
-			-- {
-			-- 	"<leader>gb",
-			-- 	function()
-			-- 		Snacks.picker.git_branches()
-			-- 	end,
-			-- 	desc = "Git Branches",
-			-- },
-			-- {
-			-- 	"<leader>gl",
-			-- 	function()
-			-- 		Snacks.picker.git_log()
-			-- 	end,
-			-- 	desc = "Git Log",
-			-- },
-			-- {
-			-- 	"<leader>gL",
-			-- 	function()
-			-- 		Snacks.picker.git_log_line()
-			-- 	end,
-			-- 	desc = "Git Log Line",
-			-- },
-			-- {
-			-- 	"<leader>gs",
-			-- 	function()
-			-- 		Snacks.picker.git_status()
-			-- 	end,
-			-- 	desc = "Git Status",
-			-- },
-			-- {
-			-- 	"<leader>gS",
-			-- 	function()
-			-- 		Snacks.picker.git_stash()
-			-- 	end,
-			-- 	desc = "Git Stash",
-			-- },
 			{
 				"<leader>gd",
 				function()
@@ -120,22 +77,6 @@ return {
 				end,
 				desc = "Git Diff (Hunks)",
 			},
-			-- {
-			-- 	"<leader>gf",
-			-- 	function()
-			-- 		Snacks.picker.git_log_file()
-			-- 	end,
-			-- 	desc = "Git Log File",
-			-- },
-			-- Grep
-			-- {
-			-- 	"<leader>sw",
-			-- 	function()
-			-- 		Snacks.picker.grep_word()
-			-- 	end,
-			-- 	desc = "Visual selection or word",
-			-- 	mode = { "n", "x" },
-			-- },
 			-- search
 			{
 				'<leader>s"',
@@ -254,6 +195,13 @@ return {
 				desc = "Toggle Scratch Buffer",
 			},
 			{
+				"<leader>q",
+				function()
+					Snacks.bufdelete()
+				end,
+				desc = "Delete Buffer",
+			},
+			{
 				"<leader>bd",
 				function()
 					Snacks.bufdelete()
@@ -281,22 +229,31 @@ return {
 				end,
 				desc = "Toggle Terminal",
 			},
-			-- {
-			-- 	"]]",
-			-- 	function()
-			-- 		Snacks.words.jump(vim.v.count1)
-			-- 	end,
-			-- 	desc = "Next Reference",
-			-- 	mode = { "n", "t" },
-			-- },
-			-- {
-			-- 	"[[",
-			-- 	function()
-			-- 		Snacks.words.jump(-vim.v.count1)
-			-- 	end,
-			-- 	desc = "Prev Reference",
-			-- 	mode = { "n", "t" },
-			-- },
+			{
+				"<leader>zz",
+				function()
+					Snacks.zen.zen()
+				end,
+				desc = "Zen Mode",
+			},
+			{
+				"<leader>zZ",
+				function()
+					Snacks.zen.zoom()
+				end,
+				desc = "Zoom Window",
+			},
+			{
+				"<leader>tc",
+				function()
+					if Snacks.dim.enabled() then
+						Snacks.dim.disable()
+					else
+						Snacks.dim.enable()
+					end
+				end,
+				desc = "Toggle code dim (monochrome except current scope)",
+			},
 		},
 		init = function()
 			vim.api.nvim_create_autocmd("User", {

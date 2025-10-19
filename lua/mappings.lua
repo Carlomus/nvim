@@ -1,7 +1,6 @@
 local map = vim.keymap.set
 
 map("i", "jk", "<ESC>")
-map("n", "<leader>q", ":bd<CR>", { desc = "Delete buffer" })
 
 -- map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 -- map("i", "<C-e>", "<End>", { desc = "move end of line" })

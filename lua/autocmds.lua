@@ -66,7 +66,7 @@ autocmd({ "FocusGained", "BufEnter" }, {
 -- Close certain ‘utility’ windows quickly with just <q>
 autocmd("FileType", {
 	group = augroup("QuickClose", { clear = true }),
-	pattern = { "help", "qf", "lspinfo", "spectre_panel", "toggleterm" },
+	pattern = { "help", "qf", "lspinfo" },
 	callback = function()
 		vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = true, silent = true })
 	end,

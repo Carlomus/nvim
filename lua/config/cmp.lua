@@ -2,7 +2,8 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 local M = {
-	completion = { completeopt = "menu,menuone", ghost_text = { enabled = true } },
+	completion = { completeopt = "menu,menuone" },
+	experimental = { ghost_text = { enabled = true } },
 	history = true,
 	update_events = "TextChanged,TextChangedI",
 	delete_check_events = "TextChanged,InsertLeave",

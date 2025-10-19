@@ -48,13 +48,6 @@ end
 M.defaults = function()
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-	vim.api.nvim_create_autocmd("LspAttach", {
-		callback = function(args)
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			M.on_attach(client, args.buf)
-		end,
-	})
-
 	local servers = require("others.servers")
 
 	for _, server in ipairs(servers) do

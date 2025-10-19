@@ -209,13 +209,6 @@ return {
 				desc = "Delete Buffer",
 			},
 			{
-				"<leader>cR",
-				function()
-					Snacks.rename.rename_file()
-				end,
-				desc = "Rename File",
-			},
-			{
 				"<leader>un",
 				function()
 					Snacks.notifier.hide()

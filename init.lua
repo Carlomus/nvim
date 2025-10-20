@@ -21,7 +21,7 @@ require("lazy").setup({
 	{ import = "plugins" },
 }, lazy_config)
 
-require("mercury.mercury").setup({})
+-- require("mercury.mercury").setup({})
 
 require("options")
 require("autocmds")

@@ -1,3 +1,5 @@
+local color = true
+
 return {
 	{
 		"folke/snacks.nvim",
@@ -239,13 +241,15 @@ return {
 			{
 				"<leader>tc",
 				function()
-					if Snacks.dim.enabled() then
+					if not color then
 						Snacks.dim.disable()
+						color = false
 					else
 						Snacks.dim.enable()
+						color = true
 					end
 				end,
-				desc = "Toggle code dim (monochrome except current scope)",
+				desc = "Toggle code colorschemes (monochrome except current scope)",
 			},
 		},
 		init = function()

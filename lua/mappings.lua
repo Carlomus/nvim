@@ -2,8 +2,8 @@ local map = vim.keymap.set
 
 map("i", "jk", "<ESC>")
 
--- map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
--- map("i", "<C-e>", "<End>", { desc = "move end of line" })
+map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
@@ -49,3 +49,9 @@ map("n", "<Up>", "<Nop>")
 map("n", "<Down>", "<Nop>")
 
 map({ "n", "x" }, "gy", [[:%y+<CR>]], { desc = "yank file to system clipboard", silent = true })
+
+-- Next/prev always centered
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")

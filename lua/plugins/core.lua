@@ -12,7 +12,11 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		event = { "BufReadPost", "BufNewFile" },
+	},
 	{
 		"nvim-tree/nvim-web-devicons",
 		opts = function() end,

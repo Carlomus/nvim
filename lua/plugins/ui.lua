@@ -39,7 +39,6 @@ M = {
 			require("lualine").setup(config)
 		end,
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = { "Neotree" },
@@ -72,7 +71,6 @@ M = {
 			window = {
 				width = 30,
 				mappings = {
-					-- sensible defaults are already there: <cr>/o=open, a=add, r=rename, d=delete, m=move, y=copy
 					["<esc>"] = "close_window",
 				},
 			},
@@ -85,19 +83,19 @@ M = {
 		config = function()
 			require("render-markdown").setup({
 				file_types = { "markdown", "python" },
-				injections = {
-					python = {
-						enabled = true,
-						query = [[
-        (
-          (expression_statement (string (string_content) @injection.content))
-          (#in_notebook_markdown_block? @injection.content)
-          (#set! injection.language "markdown")
-          (#set! injection.combined)  ; may produce a list -> handled by predicate
-        )
-      ]],
-					},
-				},
+				-- injections = {
+				-- 	python = {
+				-- 		enabled = true,
+				-- 		query = [[
+				--     (
+				--       (expression_statement (string (string_content) @injection.content))
+				--       (#in_notebook_markdown_block? @injection.content)
+				--       (#set! injection.language "markdown")
+				--       (#set! injection.combined)  ; may produce a list -> handled by predicate
+				--     )
+				--   ]],
+				-- 	},
+				-- },
 			})
 		end,
 	},

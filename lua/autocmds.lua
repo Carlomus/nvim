@@ -71,16 +71,25 @@ autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = true, silent = true })
 	end,
 })
---
--- vim.api.nvim_create_autocmd("VimEnter", {
--- 	group = vim.api.nvim_create_augroup("MiniSessionStartupInit", { clear = true }),
--- 	callback = function()
--- 		local ms_ok, ms = pcall(require, "mini.sessions")
--- 		if ms_ok then
--- 			ms.name = vim.fn.stdpath("data") .. "session.vim"
--- 			print("MiniSessions initialized with session name: " .. ms.name)
--- 		else
--- 			print("MiniSessions not available")
--- 		end
--- 	end,
--- })
+
+-- Re-enable line numbers when returning to normal buffers
+local grp = vim.api.nvim_create_augroup("ForceNumberOnNormal", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+	group = grp,
+	callback = function()
+		local bt = vim.bo.buftype
+		if bt == "" or bt == "acwrite" then
+			vim.wo.number = true
+			-- vim.wo.relativenumber = vim.wo.relativenumber or false
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = grp,
+	pattern = { "lazy", "snacks_picker", "TelescopePrompt", "help", "qf" },
+	callback = function()
+		vim.wo.number = false
+		vim.wo.relativenumber = false
+	end,
+})

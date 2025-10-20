@@ -70,7 +70,6 @@ M.defaults = function()
 			-- "pyrightconfig.json",
 			".git",
 		},
-		-- on_init = M.on_init,
 		settings = {
 			python = {
 				analysis = {
@@ -84,7 +83,6 @@ M.defaults = function()
 	-- Lua-specific LSP setup with settings
 	vim.lsp.config("lua_ls", {
 		capabilities = capabilities,
-		-- on_init = M.on_init,
 		settings = {
 			Lua = {
 				workspace = {

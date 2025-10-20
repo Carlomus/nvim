@@ -3,7 +3,7 @@ local modules = {
 	{ "mini.comment", nil },
 	{ "mini.operators", nil },
 	{ "mini.splitjoin", nil },
-	{ "mini.icons", nil },
+	-- { "mini.icons", nil },
 	{ "mini.surround", "config.mini.surround" },
 	{ "mini.hipatterns", "config.mini.hipatterns" },
 	-- { "mini.git", nil },

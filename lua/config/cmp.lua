@@ -2,8 +2,8 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 local M = {
-	completion = { completeopt = "menu,menuone" },
-	experimental = { ghost_text = { enabled = true } },
+	completion = { completeopt = "menu,menuone,noselect" },
+	experimental = { ghost_text = { enabled = false } },
 	history = true,
 	update_events = "TextChanged,TextChangedI",
 	delete_check_events = "TextChanged,InsertLeave",
@@ -50,7 +50,7 @@ local M = {
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "buffer" },
+		-- { name = "buffer" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 	},

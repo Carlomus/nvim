@@ -10,6 +10,18 @@ M = {
 		priority = 1000,
 		config = function()
 			require("nightfox").setup({
+
+				palettes = {
+					carbonfox = {},
+				},
+				specs = {
+					carbonfox = {
+						syntax = {
+							string = "#eea853",
+						},
+					},
+				},
+
 				options = {
 					styles = {
 						-- Style to be applied to different syntax groups

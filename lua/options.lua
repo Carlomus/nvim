@@ -10,7 +10,7 @@ o.foldlevelstart = 99
 o.laststatus = 3
 o.showtabline = 2
 o.showmode = false
-opt.scrolloff = 12
+opt.scrolloff = 30
 
 -- Highlight the number/line cursor is on
 o.cursorline = true

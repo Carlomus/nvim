@@ -241,7 +241,7 @@ return {
 			{
 				"<leader>tc",
 				function()
-					if not color then
+					if color then
 						Snacks.dim.disable()
 						color = false
 					else

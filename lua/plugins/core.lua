@@ -32,6 +32,12 @@ return {
 	-- },
 	{
 		"Carlomus/mercury",
-		dependencies = { "3rd/image.nvim" },
+		branch = "advanced_blocks",
+		dependencies = { "3rd/image.nvim", "MeanderingProgrammer/render-markdown.nvim" },
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("mercury").setup({})
+		end,
 	},
 }

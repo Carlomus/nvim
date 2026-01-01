@@ -3,7 +3,7 @@ local luasnip = require("luasnip")
 
 local M = {
 	completion = { completeopt = "menu,menuone,noselect" },
-	experimental = { ghost_text = { enabled = false } },
+	-- experimental = { ghost_text = { enabled = false } },
 	history = true,
 	update_events = "TextChanged,TextChangedI",
 	delete_check_events = "TextChanged,InsertLeave",

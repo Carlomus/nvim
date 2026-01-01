@@ -13,7 +13,7 @@ M = {
 					show_buffer_close_icons = false,
 					show_close_icon = false,
 					enforce_regular_tabs = true,
-					always_show_bufferline = true,
+					always_show_bufferline = false,
 					numbers = "ordinal",
 					indicator = {
 						style = "underline",
@@ -31,8 +31,72 @@ M = {
 		end,
 	},
 	{
+		"christopher-francisco/tmux-status.nvim",
+		lazy = false, -- lualine depends on it anyway
+		config = function()
+			local function hex(n)
+				return n and string.format("#%06x", n) or nil
+			end
+
+			local function get_bg(name)
+				local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
+				if not ok or not hl then
+					return nil
+				end
+				return hex(hl.bg)
+			end
+
+			local function status_bg()
+				-- Prefer lualine section bg if present; fallback to StatusLine.
+				return get_bg("lualine_c_normal") or get_bg("StatusLine") or "NONE"
+			end
+
+			-- Use your existing tmux-status fg colors, but force bg = statusline bg
+			local function apply_tmux_status_highlights()
+				local bg = status_bg()
+
+				local colors = {
+					window_active = { fg = "#e69875", bg = bg },
+					window_inactive = { fg = "#859289", bg = bg },
+					window_inactive_recent = { fg = "#3f5865", bg = bg },
+					session = { fg = "#a7c080", bg = bg },
+					datetime = { fg = "#7a8478", bg = bg },
+					battery = { fg = "#7a8478", bg = bg },
+				}
+
+				for name, value in pairs(colors) do
+					vim.api.nvim_set_hl(0, "tmux_status_" .. name, {
+						fg = value.fg,
+						bg = value.bg,
+					})
+				end
+			end
+
+			-- Normal plugin setup (icons, manage_tmux_status, etc.)
+			require("tmux-status").setup({
+				-- you can still override other options here if you want
+				-- manage_tmux_status = true,
+			})
+
+			-- Apply once now (after plugin loads)
+			apply_tmux_status_highlights()
+
+			-- Re-apply whenever colorscheme changes (theme.load() triggers ColorScheme)
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				callback = function()
+					-- defer 1 tick so lualine/theme highlight groups exist
+					vim.schedule(apply_tmux_status_highlights)
+				end,
+			})
+		end,
+	},
+	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"SmiteshP/nvim-navic",
+			"christopher-francisco/tmux-status.nvim",
+		},
 		lazy = false,
 		config = function()
 			local config = require("config.lualine")

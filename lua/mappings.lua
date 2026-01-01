@@ -46,10 +46,12 @@ map("n", "<Right>", "<Nop>")
 map("n", "<Up>", "<Nop>")
 map("n", "<Down>", "<Nop>")
 
-map({ "n", "x" }, "gy", [[:%y+<CR>]], { desc = "yank file to system clipboard", silent = true })
+map({ "n", "x" }, "gy", [[:%y+<CR><CR>]], { desc = "yank file to system clipboard", silent = true })
 
--- Next/prev always centered
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<leader>cm", function()
+	vim.cmd("redraw")
+	vim.api.nvim_echo({ { "" } }, false, {})
+end, { desc = "Clear messages" })
+
+vim.keymap.set("n", "<Esc>[9;5u", "gt", { silent = true }) -- next tab
+vim.keymap.set("n", "<Esc>[9;6u", "gT", { silent = true }) -- prev tab

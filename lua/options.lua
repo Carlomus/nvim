@@ -11,6 +11,7 @@ o.laststatus = 3
 o.showtabline = 2
 o.showmode = false
 opt.scrolloff = 30
+o.cmdheight = 0
 
 -- Highlight the number/line cursor is on
 o.cursorline = true
@@ -23,7 +24,7 @@ o.smartindent = true
 o.tabstop = 4
 o.softtabstop = 4
 
-o.winbar = " "
+o.winbar = ""
 opt.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true

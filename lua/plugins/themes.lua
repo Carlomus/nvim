@@ -17,7 +17,7 @@ M = {
 				specs = {
 					carbonfox = {
 						syntax = {
-							string = "#eea853",
+							string = require("others.helpers").hsl_to_hex(32, 65, 50),
 						},
 					},
 				},

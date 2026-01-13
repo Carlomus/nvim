@@ -9,3 +9,9 @@ vim.filetype.add({
 -- 		[".*.bazelrc"] = "bazelrc",
 -- 	},
 -- })
+vim.filetype.add({
+	extension = {
+		cu = "cuda",
+		cuh = "cuda",
+	},
+})

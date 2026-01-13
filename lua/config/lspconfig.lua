@@ -101,6 +101,22 @@ M.defaults = function()
 		},
 	})
 	vim.lsp.enable("lua_ls")
+
+	-- Clangd + CUDA
+	vim.lsp.config("clangd", {
+		on_attach = M.on_attach,
+		capabilities = capabilities,
+		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+		cmd = {
+			"clangd",
+			"--background-index",
+			"--clang-tidy",
+			"--completion-style=detailed",
+			-- helps clangd accept flags coming from nvcc / toolchains
+			"--query-driver=/usr/bin/g++,/usr/local/cuda/bin/nvcc",
+		},
+	})
+	vim.lsp.enable("clangd")
 end
 
 return M

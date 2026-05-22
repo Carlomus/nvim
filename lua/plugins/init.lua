@@ -6,4 +6,5 @@ return {
 	require("plugins.qol"),
 	require("plugins.lsp"),
 	require("plugins.themes"),
+	require("plugins.mercury"),
 }

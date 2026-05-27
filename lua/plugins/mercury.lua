@@ -1,9 +1,9 @@
--- Dev override: load Mercury from the local working copy at
--- /Users/carlo/no_work/mercury so changes there take effect on the
--- next nvim restart without going through GitHub.
+-- To revert to a local dev override (load from
+-- /Users/carlo/no_work/mercury directly without going through
+-- GitHub), uncomment the `dir = ...` line below.
 return {
 	"Carlomus/mercury",
-	dir = "/Users/carlo/no_work/mercury",
+	-- dir = "/Users/carlo/no_work/mercury",
 	lazy = false,
 	dependencies = {
 		"3rd/image.nvim",
